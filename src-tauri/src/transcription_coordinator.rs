@@ -1,7 +1,5 @@
 use crate::actions::{ActiveActionState, ACTION_MAP};
 use crate::managers::audio::AudioRecordingManager;
-use crate::overlay::{emit_action_deselected, emit_action_selected};
-use crate::settings::get_settings;
 use log::{debug, error, warn};
 use std::sync::mpsc::{self, Sender};
 use std::sync::Arc;
@@ -138,16 +136,9 @@ impl TranscriptionCoordinator {
                             {
                                 if *selected_action == Some(key) {
                                     *selected_action = None;
-                                    emit_action_deselected(&app);
                                     debug!("Action {} deselected during recording", key);
                                 } else {
                                     *selected_action = Some(key);
-                                    let settings = get_settings(&app);
-                                    if let Some(action) =
-                                        settings.post_process_actions.iter().find(|a| a.key == key)
-                                    {
-                                        emit_action_selected(&app, key, &action.name);
-                                    }
                                     debug!("Action {} selected during recording", key);
                                 }
                             } else {

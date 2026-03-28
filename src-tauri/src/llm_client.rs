@@ -116,15 +116,6 @@ pub async fn send_chat_completion_with_schema(
     system_prompt: Option<String>,
     json_schema: Option<Value>,
 ) -> Result<Option<String>, String> {
-    // Route Gemini requests to the dedicated Gemini client
-    if provider.id == "gemini" {
-        let sys = system_prompt.unwrap_or_default();
-        match crate::gemini_client::generate_text(&api_key, model, &sys, &user_content).await {
-            Ok(text) if !text.is_empty() => return Ok(Some(text)),
-            Ok(_) => return Ok(None),
-            Err(e) => return Err(format!("Gemini API error: {}", e)),
-        }
-    }
 
     let base_url = provider.base_url.trim_end_matches('/');
     let url = format!("{}/chat/completions", base_url);

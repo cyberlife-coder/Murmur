@@ -6,13 +6,12 @@ pub mod audio_toolkit;
 pub mod cli;
 mod clipboard;
 mod commands;
-mod crash_logging;
-pub mod gemini_client;
 mod helpers;
 mod input;
 mod llm_client;
 mod managers;
 mod overlay;
+pub mod portable;
 mod settings;
 mod shortcut;
 mod signal_handle;
@@ -22,8 +21,9 @@ mod tray_i18n;
 mod utils;
 
 pub use cli::CliArgs;
+#[cfg(debug_assertions)]
 use specta_typescript::{BigIntExportBehavior, Typescript};
-use tauri_specta::{collect_commands, Builder};
+use tauri_specta::{collect_commands, collect_events, Builder};
 
 use env_filter::Builder as EnvFilterBuilder;
 use managers::audio::AudioRecordingManager;
@@ -34,7 +34,7 @@ use managers::transcription::TranscriptionManager;
 use signal_hook::consts::{SIGUSR1, SIGUSR2};
 #[cfg(unix)]
 use signal_hook::iterator::Signals;
-use std::sync::atomic::{AtomicBool, AtomicU8, Ordering};
+use std::sync::atomic::{AtomicU8, Ordering};
 use std::sync::Arc;
 use tauri::image::Image;
 pub use transcription_coordinator::TranscriptionCoordinator;
@@ -49,10 +49,6 @@ use crate::settings::get_settings;
 // Global atomic to store the file log level filter
 // We use u8 to store the log::LevelFilter as a number
 pub static FILE_LOG_LEVEL: AtomicU8 = AtomicU8::new(log::LevelFilter::Debug as u8);
-
-// Cached tray visibility flag to avoid store access in on_window_event (which can deadlock)
-pub static TRAY_ICON_ENABLED: AtomicBool = AtomicBool::new(true);
-pub static APP_SHUTDOWN_STARTED: AtomicBool = AtomicBool::new(false);
 
 fn level_filter_from_u8(value: u8) -> log::LevelFilter {
     match value {
@@ -88,26 +84,57 @@ fn build_console_filter() -> env_filter::Filter {
     builder.build()
 }
 
-pub(crate) fn show_main_window(app: &AppHandle) {
+fn show_main_window(app: &AppHandle) {
     if let Some(main_window) = app.get_webview_window("main") {
-        // First, ensure the window is visible
+        if let Err(e) = main_window.unminimize() {
+            log::error!("Failed to unminimize webview window: {}", e);
+        }
         if let Err(e) = main_window.show() {
-            log::error!("Failed to show window: {}", e);
+            log::error!("Failed to show webview window: {}", e);
         }
-        // Then, bring it to the front and give it focus
         if let Err(e) = main_window.set_focus() {
-            log::error!("Failed to focus window: {}", e);
+            log::error!("Failed to focus webview window: {}", e);
         }
-        // Optional: On macOS, ensure the app becomes active if it was an accessory
         #[cfg(target_os = "macos")]
         {
             if let Err(e) = app.set_activation_policy(tauri::ActivationPolicy::Regular) {
                 log::error!("Failed to set activation policy to Regular: {}", e);
             }
         }
-    } else {
-        log::error!("Main window not found.");
+        return;
     }
+
+    let webview_labels = app.webview_windows().keys().cloned().collect::<Vec<_>>();
+    log::error!(
+        "Main window not found. Webview labels: {:?}",
+        webview_labels
+    );
+}
+
+#[allow(unused_variables)]
+fn should_force_show_permissions_window(app: &AppHandle) -> bool {
+    #[cfg(target_os = "windows")]
+    {
+        let model_manager = app.state::<Arc<ModelManager>>();
+        let has_downloaded_models = model_manager
+            .get_available_models()
+            .iter()
+            .any(|model| model.is_downloaded);
+
+        if !has_downloaded_models {
+            return false;
+        }
+
+        let status = commands::audio::get_windows_microphone_permission_status();
+        if status.supported && status.overall_access == commands::audio::PermissionAccess::Denied {
+            log::info!(
+                "Windows microphone permissions are denied; forcing main window visible for onboarding"
+            );
+            return true;
+        }
+    }
+
+    false
 }
 
 fn initialize_core_logic(app_handle: &AppHandle) {
@@ -128,6 +155,9 @@ fn initialize_core_logic(app_handle: &AppHandle) {
     );
     let history_manager =
         Arc::new(HistoryManager::new(app_handle).expect("Failed to initialize history manager"));
+
+    // Apply accelerator preferences before any model loads
+    managers::transcription::apply_accelerator_settings(app_handle);
 
     // Add managers to Tauri's managed state
     app_handle.manage(recording_manager.clone());
@@ -207,6 +237,25 @@ fn initialize_core_logic(app_handle: &AppHandle) {
             "quit" => {
                 app.exit(0);
             }
+            id if id.starts_with("model_select:") => {
+                let model_id = id.strip_prefix("model_select:").unwrap().to_string();
+                let current_model = settings::get_settings(app).selected_model;
+                if model_id == current_model {
+                    return;
+                }
+                let app_clone = app.clone();
+                std::thread::spawn(move || {
+                    match commands::models::switch_active_model(&app_clone, &model_id) {
+                        Ok(()) => {
+                            log::info!("Model switched to {} via tray.", model_id);
+                        }
+                        Err(e) => {
+                            log::error!("Failed to switch model via tray: {}", e);
+                        }
+                    }
+                    tray::update_tray_menu(&app_clone, &tray::TrayIconState::Idle, None);
+                });
+            }
             _ => {}
         })
         .build(app_handle)
@@ -216,9 +265,8 @@ fn initialize_core_logic(app_handle: &AppHandle) {
     // Initialize tray menu with idle state
     utils::update_tray_menu(app_handle, &utils::TrayIconState::Idle, None);
 
-    // Apply show_tray_icon setting and cache it in the atomic flag
+    // Apply show_tray_icon setting
     let settings = settings::get_settings(app_handle);
-    TRAY_ICON_ENABLED.store(settings.show_tray_icon, Ordering::Relaxed);
     if !settings.show_tray_icon {
         tray::set_tray_visibility(app_handle, false);
     }
@@ -245,31 +293,6 @@ fn initialize_core_logic(app_handle: &AppHandle) {
     utils::create_recording_overlay(app_handle);
 }
 
-fn shutdown_core_logic(app_handle: &AppHandle, reason: &str) {
-    if APP_SHUTDOWN_STARTED.swap(true, Ordering::SeqCst) {
-        log::debug!("Shutdown already in progress, ignoring duplicate request: {reason}");
-        return;
-    }
-
-    log::info!("Starting app shutdown cleanup: {reason}");
-
-    crate::shortcut::handler::reset_cancel_confirmation();
-
-    if let Some(audio_manager) = app_handle.try_state::<Arc<AudioRecordingManager>>() {
-        audio_manager.shutdown();
-    }
-
-    if let Some(transcription_manager) = app_handle.try_state::<Arc<TranscriptionManager>>() {
-        if transcription_manager.is_model_loaded() {
-            if let Err(err) = transcription_manager.unload_model() {
-                log::warn!("Failed to unload model during shutdown: {err}");
-            }
-        }
-    }
-
-    log::info!("App shutdown cleanup complete");
-}
-
 #[tauri::command]
 #[specta::specta]
 fn trigger_update_check(app: AppHandle) -> Result<(), String> {
@@ -282,117 +305,128 @@ fn trigger_update_check(app: AppHandle) -> Result<(), String> {
     Ok(())
 }
 
+#[tauri::command]
+#[specta::specta]
+fn show_main_window_command(app: AppHandle) -> Result<(), String> {
+    show_main_window(&app);
+    Ok(())
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run(cli_args: CliArgs) {
+    // Detect portable mode before anything else
+    portable::init();
+
     // Parse console logging directives from RUST_LOG, falling back to info-level logging
     // when the variable is unset
     let console_filter = build_console_filter();
 
-    let specta_builder = Builder::<tauri::Wry>::new().commands(collect_commands![
-        shortcut::change_binding,
-        shortcut::reset_binding,
-        shortcut::change_ptt_setting,
-        shortcut::change_audio_feedback_setting,
-        shortcut::change_audio_feedback_volume_setting,
-        shortcut::change_sound_theme_setting,
-        shortcut::change_start_hidden_setting,
-        shortcut::change_autostart_setting,
-        shortcut::change_translate_to_english_setting,
-        shortcut::change_selected_language_setting,
-        shortcut::change_overlay_position_setting,
-        shortcut::change_debug_mode_setting,
-        shortcut::change_word_correction_threshold_setting,
-        shortcut::change_paste_method_setting,
-        shortcut::get_available_typing_tools,
-        shortcut::change_typing_tool_setting,
-        shortcut::change_external_script_path_setting,
-        shortcut::change_clipboard_handling_setting,
-        shortcut::change_auto_submit_setting,
-        shortcut::change_auto_submit_key_setting,
-        shortcut::change_post_process_enabled_setting,
-        shortcut::change_experimental_enabled_setting,
-        shortcut::change_post_process_base_url_setting,
-        shortcut::change_post_process_api_key_setting,
-        shortcut::change_post_process_model_setting,
-        shortcut::set_post_process_provider,
-        shortcut::fetch_post_process_models,
-        shortcut::add_post_process_prompt,
-        shortcut::update_post_process_prompt,
-        shortcut::delete_post_process_prompt,
-        shortcut::set_post_process_selected_prompt,
-        shortcut::add_post_process_action,
-        shortcut::update_post_process_action,
-        shortcut::delete_post_process_action,
-        shortcut::add_saved_processing_model,
-        shortcut::delete_saved_processing_model,
-        shortcut::update_custom_words,
-        shortcut::suspend_binding,
-        shortcut::resume_binding,
-        shortcut::change_mute_while_recording_setting,
-        shortcut::change_append_trailing_space_setting,
-        shortcut::change_app_language_setting,
-        shortcut::change_update_checks_setting,
-        shortcut::change_keyboard_implementation_setting,
-        shortcut::get_keyboard_implementation,
-        shortcut::change_show_tray_icon_setting,
-        shortcut::change_long_audio_model_setting,
-        shortcut::change_long_audio_threshold_setting,
-        shortcut::handy_keys::start_handy_keys_recording,
-        shortcut::handy_keys::stop_handy_keys_recording,
-        trigger_update_check,
-        commands::cancel_operation,
-        commands::toggle_pause,
-        commands::get_app_dir_path,
-        commands::get_app_settings,
-        commands::get_default_settings,
-        commands::get_log_dir_path,
-        commands::set_log_level,
-        commands::open_recordings_folder,
-        commands::open_log_dir,
-        commands::open_app_data_dir,
-        commands::export_settings,
-        commands::import_settings,
-        commands::check_apple_intelligence_available,
-        commands::initialize_enigo,
-        commands::initialize_shortcuts,
-        commands::models::get_available_models,
-        commands::models::get_model_info,
-        commands::models::download_model,
-        commands::models::delete_model,
-        commands::models::cancel_download,
-        commands::models::set_active_model,
-        commands::models::get_current_model,
-        commands::models::get_transcription_model_status,
-        commands::models::is_model_loading,
-        commands::models::has_any_models_available,
-        commands::models::has_any_models_or_downloads,
-        commands::audio::update_microphone_mode,
-        commands::audio::get_microphone_mode,
-        commands::audio::get_available_microphones,
-        commands::audio::set_selected_microphone,
-        commands::audio::get_selected_microphone,
-        commands::audio::get_available_output_devices,
-        commands::audio::set_selected_output_device,
-        commands::audio::get_selected_output_device,
-        commands::audio::play_test_sound,
-        commands::audio::check_custom_sounds,
-        commands::audio::set_clamshell_microphone,
-        commands::audio::get_clamshell_microphone,
-        commands::audio::is_recording,
-        commands::transcription::set_model_unload_timeout,
-        commands::transcription::get_model_load_status,
-        commands::transcription::unload_model_manually,
-        commands::history::get_history_entries,
-        commands::history::toggle_history_entry_saved,
-        commands::history::get_audio_file_path,
-        commands::history::delete_history_entry,
-        commands::history::update_history_limit,
-        commands::history::update_recording_retention_period,
-        commands::history::reprocess_history_entry,
-        commands::gemini::change_gemini_api_key_setting,
-        commands::gemini::change_gemini_model_setting,
-        helpers::clamshell::is_laptop,
-    ]);
+    let specta_builder = Builder::<tauri::Wry>::new()
+        .commands(collect_commands![
+            shortcut::change_binding,
+            shortcut::reset_binding,
+            shortcut::change_ptt_setting,
+            shortcut::change_audio_feedback_setting,
+            shortcut::change_audio_feedback_volume_setting,
+            shortcut::change_sound_theme_setting,
+            shortcut::change_start_hidden_setting,
+            shortcut::change_autostart_setting,
+            shortcut::change_translate_to_english_setting,
+            shortcut::change_selected_language_setting,
+            shortcut::change_overlay_position_setting,
+            shortcut::change_debug_mode_setting,
+            shortcut::change_word_correction_threshold_setting,
+            shortcut::change_extra_recording_buffer_setting,
+            shortcut::change_paste_delay_ms_setting,
+            shortcut::change_paste_method_setting,
+            shortcut::get_available_typing_tools,
+            shortcut::change_typing_tool_setting,
+            shortcut::change_external_script_path_setting,
+            shortcut::change_clipboard_handling_setting,
+            shortcut::change_auto_submit_setting,
+            shortcut::change_auto_submit_key_setting,
+            shortcut::change_post_process_enabled_setting,
+            shortcut::change_experimental_enabled_setting,
+            shortcut::change_post_process_base_url_setting,
+            shortcut::change_post_process_api_key_setting,
+            shortcut::change_post_process_model_setting,
+            shortcut::set_post_process_provider,
+            shortcut::fetch_post_process_models,
+            shortcut::add_post_process_prompt,
+            shortcut::update_post_process_prompt,
+            shortcut::delete_post_process_prompt,
+            shortcut::set_post_process_selected_prompt,
+            shortcut::update_custom_words,
+            shortcut::suspend_binding,
+            shortcut::resume_binding,
+            shortcut::change_mute_while_recording_setting,
+            shortcut::change_append_trailing_space_setting,
+            shortcut::change_lazy_stream_close_setting,
+            shortcut::change_app_language_setting,
+            shortcut::change_update_checks_setting,
+            shortcut::change_keyboard_implementation_setting,
+            shortcut::get_keyboard_implementation,
+            shortcut::change_show_tray_icon_setting,
+            shortcut::change_whisper_accelerator_setting,
+            shortcut::change_ort_accelerator_setting,
+            shortcut::change_whisper_gpu_device,
+            shortcut::get_available_accelerators,
+            shortcut::handy_keys::start_handy_keys_recording,
+            shortcut::handy_keys::stop_handy_keys_recording,
+            trigger_update_check,
+            show_main_window_command,
+            commands::cancel_operation,
+            commands::is_portable,
+            commands::get_app_dir_path,
+            commands::get_app_settings,
+            commands::get_default_settings,
+            commands::get_log_dir_path,
+            commands::set_log_level,
+            commands::open_recordings_folder,
+            commands::open_log_dir,
+            commands::open_app_data_dir,
+            commands::check_apple_intelligence_available,
+            commands::initialize_enigo,
+            commands::initialize_shortcuts,
+            commands::models::get_available_models,
+            commands::models::get_model_info,
+            commands::models::download_model,
+            commands::models::delete_model,
+            commands::models::cancel_download,
+            commands::models::set_active_model,
+            commands::models::get_current_model,
+            commands::models::get_transcription_model_status,
+            commands::models::is_model_loading,
+            commands::models::has_any_models_available,
+            commands::models::has_any_models_or_downloads,
+            commands::audio::update_microphone_mode,
+            commands::audio::get_microphone_mode,
+            commands::audio::get_windows_microphone_permission_status,
+            commands::audio::open_microphone_privacy_settings,
+            commands::audio::get_available_microphones,
+            commands::audio::set_selected_microphone,
+            commands::audio::get_selected_microphone,
+            commands::audio::get_available_output_devices,
+            commands::audio::set_selected_output_device,
+            commands::audio::get_selected_output_device,
+            commands::audio::play_test_sound,
+            commands::audio::check_custom_sounds,
+            commands::audio::set_clamshell_microphone,
+            commands::audio::get_clamshell_microphone,
+            commands::audio::is_recording,
+            commands::transcription::set_model_unload_timeout,
+            commands::transcription::get_model_load_status,
+            commands::transcription::unload_model_manually,
+            commands::history::get_history_entries,
+            commands::history::toggle_history_entry_saved,
+            commands::history::get_audio_file_path,
+            commands::history::delete_history_entry,
+            commands::history::retry_history_entry_transcription,
+            commands::history::update_history_limit,
+            commands::history::update_recording_retention_period,
+            helpers::clamshell::is_laptop,
+        ])
+        .events(collect_events![managers::history::HistoryUpdatePayload,]);
 
     #[cfg(debug_assertions)] // <- Only export on non-release builds
     specta_builder
@@ -402,6 +436,9 @@ pub fn run(cli_args: CliArgs) {
         )
         .expect("Failed to export typescript bindings");
 
+    let invoke_handler = specta_builder.invoke_handler();
+
+    #[allow(unused_mut)]
     let mut builder = tauri::Builder::default()
         .device_event_filter(tauri::DeviceEventFilter::Always)
         .plugin(tauri_plugin_dialog::init())
@@ -418,8 +455,15 @@ pub fn run(cli_args: CliArgs) {
                         move |metadata| console_filter.enabled(metadata)
                     }),
                     // File logs respect the user's settings (stored in FILE_LOG_LEVEL atomic)
-                    Target::new(TargetKind::LogDir {
-                        file_name: Some("parler".into()),
+                    Target::new(if let Some(data_dir) = portable::data_dir() {
+                        TargetKind::Folder {
+                            path: data_dir.join("logs"),
+                            file_name: Some("handy".into()),
+                        }
+                    } else {
+                        TargetKind::LogDir {
+                            file_name: Some("handy".into()),
+                        }
                     })
                     .filter(|metadata| {
                         let file_level = FILE_LOG_LEVEL.load(Ordering::Relaxed);
@@ -461,13 +505,26 @@ pub fn run(cli_args: CliArgs) {
         ))
         .manage(cli_args.clone())
         .setup(move |app| {
-            let mut settings = get_settings(&app.handle());
+            specta_builder.mount_events(app);
 
-            if let Err(err) = crash_logging::install_panic_logging(&app.handle())
-                .map(|path| log::info!("Crash logs will be written to {}", path.display()))
-            {
-                log::warn!("Failed to initialize crash logging: {err}");
+            // Create main window programmatically so we can set data_directory
+            // for portable mode (redirects WebView2 cache to portable Data dir)
+            let mut win_builder =
+                tauri::WebviewWindowBuilder::new(app, "main", tauri::WebviewUrl::App("/".into()))
+                    .title("Handy")
+                    .inner_size(680.0, 570.0)
+                    .min_inner_size(680.0, 570.0)
+                    .resizable(true)
+                    .maximizable(false)
+                    .visible(false);
+
+            if let Some(data_dir) = portable::data_dir() {
+                win_builder = win_builder.data_directory(data_dir.join("webview"));
             }
+
+            win_builder.build()?;
+
+            let mut settings = get_settings(&app.handle());
 
             // CLI --debug flag overrides debug_mode and log level (runtime-only, not persisted)
             if cli_args.debug {
@@ -481,7 +538,6 @@ pub fn run(cli_args: CliArgs) {
             FILE_LOG_LEVEL.store(file_log_level.to_level_filter() as u8, Ordering::Relaxed);
             let app_handle = app.handle().clone();
             app.manage(TranscriptionCoordinator::new(app_handle.clone()));
-            app.manage(actions::ActiveActionState(std::sync::Mutex::new(None)));
 
             initialize_core_logic(&app_handle);
 
@@ -490,18 +546,17 @@ pub fn run(cli_args: CliArgs) {
                 tray::set_tray_visibility(&app_handle, false);
             }
 
-            // Show main window only if not starting hidden
-            // CLI --start-hidden flag overrides the setting
+            // Show main window only if not starting hidden.
+            // CLI --start-hidden flag overrides the setting.
+            // But if permission onboarding is required, always show the window.
             let should_hide = settings.start_hidden || cli_args.start_hidden;
+            let should_force_show = should_force_show_permissions_window(&app_handle);
 
             // If start_hidden but tray is disabled, we must show the window
             // anyway. Without a tray icon, the dock is the only way back in.
             let tray_available = settings.show_tray_icon && !cli_args.no_tray;
-            if !should_hide || !tray_available {
-                if let Some(main_window) = app_handle.get_webview_window("main") {
-                    main_window.show().unwrap();
-                    main_window.set_focus().unwrap();
-                }
+            if should_force_show || !should_hide || !tray_available {
+                show_main_window(&app_handle);
             }
 
             Ok(())
@@ -511,11 +566,11 @@ pub fn run(cli_args: CliArgs) {
                 api.prevent_close();
                 let _res = window.hide();
 
-                let tray_visible = TRAY_ICON_ENABLED.load(Ordering::Relaxed)
-                    && !window.app_handle().state::<CliArgs>().no_tray;
-
                 #[cfg(target_os = "macos")]
                 {
+                    let settings = get_settings(&window.app_handle());
+                    let tray_visible =
+                        settings.show_tray_icon && !window.app_handle().state::<CliArgs>().no_tray;
                     if tray_visible {
                         // Tray is available: hide the dock icon, app lives in the tray
                         let res = window
@@ -535,15 +590,10 @@ pub fn run(cli_args: CliArgs) {
             }
             _ => {}
         })
-        .invoke_handler(specta_builder.invoke_handler())
+        .invoke_handler(invoke_handler)
         .build(tauri::generate_context!())
         .expect("error while building tauri application")
         .run(|app, event| {
-            if let tauri::RunEvent::ExitRequested { code, .. } = &event {
-                let reason = format!("exit requested with code {:?}", code);
-                shutdown_core_logic(app, &reason);
-            }
-
             #[cfg(target_os = "macos")]
             if let tauri::RunEvent::Reopen { .. } = &event {
                 show_main_window(app);

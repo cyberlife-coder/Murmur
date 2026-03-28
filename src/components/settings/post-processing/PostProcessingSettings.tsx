@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
+import React, { useEffect, useState } from "react";
+import { Trans, useTranslation } from "react-i18next";
+import { RefreshCcw } from "lucide-react";
 import { commands } from "@/bindings";
 
 import {
@@ -265,12 +266,12 @@ const PostProcessingActionsComponent: React.FC = () => {
                   "settings.postProcessing.actions.promptPlaceholder",
                 )}
               />
-              <p
-                className="text-xs text-mid-gray/70"
-                dangerouslySetInnerHTML={{
-                  __html: t("settings.postProcessing.actions.promptTip"),
-                }}
-              />
+              <p className="text-xs text-mid-gray/70">
+                <Trans
+                  i18nKey="settings.postProcessing.prompts.promptTip"
+                  components={{ code: <code /> }}
+                />
+              </p>
             </div>
 
             <div className="space-y-1 flex flex-col">
