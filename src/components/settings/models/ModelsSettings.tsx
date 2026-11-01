@@ -7,7 +7,15 @@ import React, {
 } from "react";
 import { useTranslation } from "react-i18next";
 import { ask } from "@tauri-apps/plugin-dialog";
-import { ChevronDown, Globe, Plus, RefreshCcw, Trash2, X } from "lucide-react";
+import {
+  ChevronDown,
+  Globe,
+  Link2,
+  Plus,
+  RefreshCcw,
+  Trash2,
+  X,
+} from "lucide-react";
 import type { ModelCardStatus } from "@/components/onboarding";
 import { ModelCard } from "@/components/onboarding";
 import { useModelStore } from "@/stores/modelStore";
@@ -30,6 +38,7 @@ const LanguageModelsSection: React.FC = () => {
     settings,
     refreshSettings,
     fetchPostProcessModels,
+    updatePostProcessBaseUrl,
     updatePostProcessApiKey,
     postProcessModelOptions,
   } = useSettings();
@@ -48,6 +57,7 @@ const LanguageModelsSection: React.FC = () => {
   const [apiKeyInput, setApiKeyInput] = useState("");
   const [model, setModel] = useState("");
   const [label, setLabel] = useState("");
+  const [baseUrl, setBaseUrl] = useState("");
   const [isFetching, setIsFetching] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -69,6 +79,7 @@ const LanguageModelsSection: React.FC = () => {
     setIsAdding(false);
     setProviderId("");
     setApiKeyInput("");
+    setBaseUrl("");
     setModel("");
     setLabel("");
     setError(null);
@@ -81,6 +92,7 @@ const LanguageModelsSection: React.FC = () => {
       "";
     setProviderId(first);
     setApiKeyInput(apiKeys[first] || "");
+    setBaseUrl("");
     setModel("");
     setLabel("");
     setError(null);
@@ -91,9 +103,20 @@ const LanguageModelsSection: React.FC = () => {
     (id: string) => {
       setProviderId(id);
       setApiKeyInput(apiKeys[id] || "");
+      setBaseUrl("");
       setModel("");
     },
     [apiKeys],
+  );
+
+  const handleBaseUrlChange = useCallback(
+    (value: string) => {
+      setBaseUrl(value);
+      if (providerId) {
+        void updatePostProcessBaseUrl(providerId, value);
+      }
+    },
+    [providerId, updatePostProcessBaseUrl],
   );
 
   const handleApiKeyBlur = useCallback(async () => {
@@ -230,6 +253,27 @@ const LanguageModelsSection: React.FC = () => {
               placeholder={t("settings.models.languageModels.provider")}
             />
           </div>
+
+          {!isAppleIntelligence && (
+            <div className="space-y-1">
+              <label className="text-sm font-semibold">
+                {t("settings.postProcessing.api.baseUrl.title")}
+              </label>
+              <p className="text-xs text-text/50 -mt-0.5">
+                {t("settings.postProcessing.api.baseUrl.description")}
+              </p>
+              <div className="flex items-center gap-2 bg-mid-gray/10 border border-mid-gray/80 rounded-md transition-all duration-150 hover:bg-logo-primary/10 hover:border-logo-primary focus-within:bg-logo-primary/20 focus-within:border-logo-primary">
+                <Link2 className="w-4 h-4 text-text/40 ml-2 shrink-0" />
+                <input
+                  type="text"
+                  value={baseUrl}
+                  onChange={(e) => handleBaseUrlChange(e.target.value)}
+                  placeholder={t("settings.postProcessing.api.baseUrl.placeholder")}
+                  className="w-full px-3 py-2 text-sm bg-transparent text-start outline-none"
+                />
+              </div>
+            </div>
+          )}
 
           {!isAppleIntelligence && (
             <div className="space-y-1">

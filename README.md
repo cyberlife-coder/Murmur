@@ -447,6 +447,8 @@ The goal is to create both a useful tool and a foundation for others to build up
 
 MIT License - see [LICENSE](LICENSE) file for details.
 
+This project is a fork of [Melvynx/Parler](https://github.com/Melvynx/Parler) (Copyright (c) 2025 CJ Pais, MIT). The original copyright notice is preserved in [LICENSE](LICENSE); third-party components and their licenses are listed in [NOTICE.md](NOTICE.md).
+
 ## Acknowledgments
 
 - **Whisper** by OpenAI for the speech recognition model
