@@ -2,6 +2,10 @@
 
 [![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/invite/WVBeWsNXK4)
 
+> **This is a fork of [Melvynx/Parler](https://github.com/Melvynx/Parler) (Handy by CJ Pais, MIT License).**
+> Fork changes are listed in [CHANGELOG.md](CHANGELOG.md), third-party licenses in [NOTICE.md](NOTICE.md).
+> Latest fork build (macOS DMG): [releases page](https://github.com/cyberlife-coder/Parler/releases).
+
 **A free, open source, and extensible speech-to-text application that works completely offline.**
 
 Handy is a cross-platform desktop application that provides simple, privacy-focused speech transcription. Press a shortcut, speak, and have your words appear in any text field. This happens on your own computer without sending any information to the cloud.
@@ -32,18 +36,26 @@ The process is entirely local:
   - **Parakeet V3** - CPU-optimized model with excellent performance and automatic language detection
 - Works on Windows, macOS, and Linux
 
+## Fork features
+
+On top of upstream Handy, this fork adds:
+
+- **Custom LLM endpoint**: in Settings → Models → Processing → Add model, the *Custom* provider has an editable **Base URL** field, so post-processing actions can run against any OpenAI-compatible API (Ollama, vLLM, LM Studio, a self-hosted gateway…). The model list is fetched from that endpoint.
+- **macOS release builds** published as DMG on this repo's [releases page](https://github.com/cyberlife-coder/Parler/releases) (ad-hoc signed — on first launch, right-click the app → Open).
+
 ## Quick Start
 
 ### Installation
 
-1. Download the latest release from the [releases page](https://github.com/cjpais/Handy/releases) or the [website](https://handy.computer)
+1. **This fork — macOS (Apple Silicon)**: download the DMG from the [fork releases](https://github.com/cyberlife-coder/Parler/releases/tag/v0.9.1-fork.1) (check `SHA256SUMS.txt`), open it and drag **Parler** into **Applications**. On first launch, right-click → Open (the build is not notarized).
+2. **Upstream Handy**: download from the [upstream releases page](https://github.com/cjpais/Handy/releases) or the [website](https://handy.computer)
    - **macOS**: Also available via [Homebrew cask](https://formulae.brew.sh/cask/handy): `brew install --cask handy`
    - **Windows**: Also available via [winget](https://github.com/microsoft/winget-pkgs): `winget install cjpais.Handy` \
      **Note:** The Homebrew cask and winget package are not maintained by the Handy developers.
-2. Install the application
-3. Launch Handy and grant necessary system permissions (microphone, accessibility)
-4. Configure your preferred keyboard shortcuts in Settings
-5. Start transcribing!
+3. Install the application
+4. Launch the app and grant necessary system permissions (microphone, accessibility)
+5. Configure your preferred keyboard shortcuts in Settings
+6. Start transcribing!
 
 ### Development Setup
 
@@ -265,7 +277,9 @@ We're actively working on several features and improvements. Contributions and f
 
 ## Verify Release Signatures
 
-Handy release artifacts are signed with Tauri's updater signature format. The public key is stored in [`src-tauri/tauri.conf.json`](src-tauri/tauri.conf.json) under `plugins.updater.pubkey`.
+> **Fork builds** (`vX.Y.Z-fork.N` on [this repo's releases](https://github.com/cyberlife-coder/Parler/releases)) are **not** signed with the updater key — verify them with the SHA256 checksum instead: `sha256sum -c SHA256SUMS.txt`.
+
+Upstream Handy release artifacts are signed with Tauri's updater signature format. The public key is stored in [`src-tauri/tauri.conf.json`](src-tauri/tauri.conf.json) under `plugins.updater.pubkey`.
 
 To verify a release manually, set `ARTIFACT` to the filename you downloaded, save the `pubkey` value from `src-tauri/tauri.conf.json` to `handy.pub.b64`, then decode the public key and matching `.sig` file from base64 and verify the artifact with `minisign`:
 

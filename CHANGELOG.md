@@ -1,0 +1,30 @@
+# Changelog
+
+All notable changes to this project are documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+This repository is a fork of [Melvynx/Parler](https://github.com/Melvynx/Parler)
+(Handy by CJ Pais, MIT License). Fork releases are tagged `vX.Y.Z-fork.N` and
+build on the corresponding upstream version `X.Y.Z`.
+
+## [Unreleased]
+
+## [0.9.1-fork.1] - 2026-11-01
+
+### Added
+
+- **Editable base URL for the Custom LLM provider**: Settings → Models → Processing → Add model now shows a *Base URL* field for the `custom` provider, so post-processing actions can target any OpenAI-compatible endpoint (Ollama, vLLM, LM Studio, self-hosted gateways, …). Changing the URL persists it, resets the stored model and clears the cached model list. Enforced server-side: only the `custom` provider accepts base URL edits.
+- Playwright e2e test for the base URL field (mocked Tauri backend, runs against `bun run dev` via `bun run test:playwright`).
+- macOS release artifact: `Parler_0.9.1_aarch64.dmg` (Apple Silicon, ad-hoc signed, hardened runtime, VAD model bundled) published on the [releases page](https://github.com/cyberlife-coder/Parler/releases/tag/v0.9.1-fork.1) with a `SHA256SUMS.txt` checksum.
+- `NOTICE.md` with fork attribution and the third-party license inventory.
+
+### Changed
+
+- `zod` upgraded to v4; `vite` pinned to 6.4.5 and `minimatch` to 11.0.3 via `package.json` overrides (security fixes).
+
+### Notes
+
+- The in-app updater does not work for this fork (it relies on the upstream signing key): updates are done by re-downloading the DMG from the releases page.
+- First launch on macOS requires right-click → Open because the build is not notarized.
