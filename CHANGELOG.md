@@ -15,7 +15,7 @@ build on the corresponding upstream version `X.Y.Z`.
 
 ### Added
 
-- **Editable base URL for the Custom LLM provider**: Settings → Models → Processing → Add model now shows a *Base URL* field for the `custom` provider, so post-processing actions can target any OpenAI-compatible endpoint (Ollama, vLLM, LM Studio, self-hosted gateways, …). Changing the URL persists it, resets the stored model and clears the cached model list. Enforced server-side: only the `custom` provider accepts base URL edits.
+- **Editable base URL for the Custom LLM provider**: Settings → Models → Processing → Add model now shows a _Base URL_ field for the `custom` provider, so post-processing actions can target any OpenAI-compatible endpoint (Ollama, vLLM, LM Studio, self-hosted gateways, …). Changing the URL persists it, resets the stored model and clears the cached model list. Enforced server-side: only the `custom` provider accepts base URL edits.
 - Playwright e2e test for the base URL field (mocked Tauri backend, runs against `bun run dev` via `bun run test:playwright`).
 - macOS release artifact: `Parler_0.9.1_aarch64.dmg` (Apple Silicon, ad-hoc signed, hardened runtime, VAD model bundled) published on the [releases page](https://github.com/cyberlife-coder/Parler/releases/tag/v0.9.1-fork.1) with a `SHA256SUMS.txt` checksum.
 - Windows x64 release artifacts (NSIS installer `.exe` + `.msi`) built on GitHub Actions (`build-windows.yml`) and published as [v0.9.1-windows](https://github.com/cyberlife-coder/Parler/releases/tag/v0.9.1-windows). Unsigned — SmartScreen warning on first run ("More info" → "Run anyway").

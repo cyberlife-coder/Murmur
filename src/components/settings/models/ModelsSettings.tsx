@@ -268,7 +268,9 @@ const LanguageModelsSection: React.FC = () => {
                   type="text"
                   value={baseUrl}
                   onChange={(e) => handleBaseUrlChange(e.target.value)}
-                  placeholder={t("settings.postProcessing.api.baseUrl.placeholder")}
+                  placeholder={t(
+                    "settings.postProcessing.api.baseUrl.placeholder",
+                  )}
                   className="w-full px-3 py-2 text-sm bg-transparent text-start outline-none"
                 />
               </div>

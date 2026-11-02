@@ -1,6 +1,6 @@
 # NOTICE
 
-This project is a fork of **Parler** (a.k.a. *Handy*), originally created by
+This project is a fork of **Parler** (a.k.a. _Handy_), originally created by
 **CJ Pais / Melvynx** — <https://github.com/Melvynx/Parler>
 
 The upstream project is licensed under the MIT License. The original copyright
@@ -15,13 +15,13 @@ License. See [`LICENSE`](LICENSE) for the full terms.
 
 ### Bundled / downloaded assets
 
-| Component | License | Source |
-|---|---|---|
-| Silero VAD model (`silero_vad_v4.onnx`, downloaded at setup) | MIT | <https://github.com/snakers4/silero-vad> |
-| Whisper GGML models (downloaded at runtime) | MIT | <https://github.com/ggerganov/whisper.cpp> |
-| Geist font family (npm `geist`) | SIL Open Font License 1.1 | <https://vercel.com/font> |
-| Lucide icons (npm `lucide-react`) | ISC | <https://lucide.dev> |
-| `web-app/` (Now.ts starter) | see [`web-app/LICENSE.TXT`](web-app/LICENSE.TXT) (Codelynx, LLC) | <https://github.com/Codelynx/nowts> |
+| Component                                                    | License                                                          | Source                                     |
+| ------------------------------------------------------------ | ---------------------------------------------------------------- | ------------------------------------------ |
+| Silero VAD model (`silero_vad_v4.onnx`, downloaded at setup) | MIT                                                              | <https://github.com/snakers4/silero-vad>   |
+| Whisper GGML models (downloaded at runtime)                  | MIT                                                              | <https://github.com/ggerganov/whisper.cpp> |
+| Geist font family (npm `geist`)                              | SIL Open Font License 1.1                                        | <https://vercel.com/font>                  |
+| Lucide icons (npm `lucide-react`)                            | ISC                                                              | <https://lucide.dev>                       |
+| `web-app/` (Now.ts starter)                                  | see [`web-app/LICENSE.TXT`](web-app/LICENSE.TXT) (Codelynx, LLC) | <https://github.com/Codelynx/nowts>        |
 
 ### Frontend dependencies (npm, direct)
 

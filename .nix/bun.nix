@@ -1421,6 +1421,10 @@
     url = "https://registry.npmjs.org/prelude-ls/-/prelude-ls-1.2.1.tgz";
     hash = "sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==";
   };
+  "prettier-plugin-tailwindcss@0.8.1" = fetchurl {
+    url = "https://registry.npmjs.org/prettier-plugin-tailwindcss/-/prettier-plugin-tailwindcss-0.8.1.tgz";
+    hash = "sha512-iaFMYqDsE4ffdDkn5qup0j5f2aCEBFZrdrZnvu9QKTlWx/iGPeQ4HHu7b7fCPMxeo9nwQBiOAh2nSypdFYWJkw==";
+  };
   "prettier@3.6.2" = fetchurl {
     url = "https://registry.npmjs.org/prettier/-/prettier-3.6.2.tgz";
     hash = "sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ==";

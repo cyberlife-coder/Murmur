@@ -259,7 +259,9 @@ const ActionDialog: React.FC<ActionDialogProps> = ({
               selectedValue={llmModelId}
               options={modelOptions}
               onSelect={(value) => setLlmModelId(value)}
-              placeholder={t("settings.postProcessing.actions.modelPlaceholder")}
+              placeholder={t(
+                "settings.postProcessing.actions.modelPlaceholder",
+              )}
               className="w-full"
             />
           ) : (

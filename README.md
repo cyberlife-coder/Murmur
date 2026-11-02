@@ -40,7 +40,7 @@ The process is entirely local:
 
 On top of upstream Handy, this fork adds:
 
-- **Custom LLM endpoint**: in Settings → Models → Processing → Add model, the *Custom* provider has an editable **Base URL** field, so post-processing actions can run against any OpenAI-compatible API (Ollama, vLLM, LM Studio, a self-hosted gateway…). The model list is fetched from that endpoint.
+- **Custom LLM endpoint**: in Settings → Models → Processing → Add model, the _Custom_ provider has an editable **Base URL** field, so post-processing actions can run against any OpenAI-compatible API (Ollama, vLLM, LM Studio, a self-hosted gateway…). The model list is fetched from that endpoint.
 - **Release builds on GitHub Actions**: macOS DMG (Apple Silicon) and Windows x64 (NSIS + MSI) on this repo's [releases page](https://github.com/cyberlife-coder/Parler/releases) — see [CHANGELOG.md](CHANGELOG.md).
 
 ## Quick Start
@@ -53,10 +53,10 @@ On top of upstream Handy, this fork adds:
    - **macOS**: Also available via [Homebrew cask](https://formulae.brew.sh/cask/handy): `brew install --cask handy`
    - **Windows**: Also available via [winget](https://github.com/microsoft/winget-pkgs): `winget install cjpais.Handy` \
      **Note:** The Homebrew cask and winget package are not maintained by the Handy developers.
-3. Install the application
-4. Launch the app and grant necessary system permissions (microphone, accessibility)
-5. Configure your preferred keyboard shortcuts in Settings
-6. Start transcribing!
+4. Install the application
+5. Launch the app and grant necessary system permissions (microphone, accessibility)
+6. Configure your preferred keyboard shortcuts in Settings
+7. Start transcribing!
 
 ### Development Setup
 
