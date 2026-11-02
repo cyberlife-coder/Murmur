@@ -56,6 +56,7 @@ On top of upstream Handy, this fork adds:
      **Note:** The Homebrew cask and winget package are not maintained by the Handy developers.
 4. Install the application
 5. Launch the app and grant necessary system permissions (microphone, accessibility)
+   - **Note (macOS):** because fork builds are ad-hoc signed (not notarized), each update changes the binary's code hash, so macOS may ask you to **re-enable Accessibility** for Murmur in System Settings → Privacy & Security → Accessibility after an update. This is expected and safe.
 6. Configure your preferred keyboard shortcuts in Settings
 7. Start transcribing!
 
