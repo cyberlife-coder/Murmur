@@ -140,7 +140,12 @@ Every user-facing change MUST follow semver and update the changelog:
 **Updater signing:** the fork owns a minisign key pair (`~/.tauri/murmur-signing.key`,
 never commit it). The public key is in `src-tauri/tauri.conf.json` (`plugins.updater.pubkey`).
 GitHub secrets `TAURI_SIGNING_PRIVATE_KEY` / `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` hold the
-private key for CI. Losing the key = no more signed updates.
+private key for CI. Losing the key = no more signed updates. Set them by piping the file
+CONTENT via stdin (NOT `-b path`, which stores the literal path string):
+```bash
+cat ~/.tauri/murmur-signing.key | gh secret set TAURI_SIGNING_PRIVATE_KEY --repo cyberlife-coder/Murmur
+cat ~/.tauri/murmur-signing.key.password | gh secret set TAURI_SIGNING_PRIVATE_KEY_PASSWORD --repo cyberlife-coder/Murmur
+```
 
 **macOS code signing:** builds are ad-hoc (`signingIdentity: "-"`), so each build has a new
 cdhash and macOS re-asks for the Accessibility permission after every update. To make the
