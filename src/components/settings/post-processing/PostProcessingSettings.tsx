@@ -465,7 +465,7 @@ export const PostProcessingSettings: React.FC = () => {
           open={dialogOpen}
           action={editingAction}
           onClose={() => setEditingId(null)}
-          onSaved={(id) => setEditingId(id)}
+          onSaved={() => setEditingId(null)}
         />
       )}
     </div>

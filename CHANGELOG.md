@@ -11,6 +11,12 @@ build on the corresponding upstream version `X.Y.Z`.
 
 ## [Unreleased]
 
+## [0.11.4-fork.1] - 2026-11-02
+
+### Fixed
+
+- **Post-processing action dialog now closes after Save/Create** — the action was persisted correctly, but the dialog stayed open in edit mode, making it look like the save did nothing.
+
 ## [0.11.3-fork.1] - 2026-11-02
 
 ### Changed
