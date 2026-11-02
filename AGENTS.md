@@ -141,3 +141,8 @@ Every user-facing change MUST follow semver and update the changelog:
 never commit it). The public key is in `src-tauri/tauri.conf.json` (`plugins.updater.pubkey`).
 GitHub secrets `TAURI_SIGNING_PRIVATE_KEY` / `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` hold the
 private key for CI. Losing the key = no more signed updates.
+
+**macOS code signing:** builds are ad-hoc (`signingIdentity: "-"`), so each build has a new
+cdhash and macOS re-asks for the Accessibility permission after every update. To make the
+permission survive updates + enable notarization, use an Apple Developer ID certificate —
+see [docs/CODE_SIGNING.md](docs/CODE_SIGNING.md) for the full wiring.
