@@ -1,6 +1,6 @@
 [package]
 name = "murmur"
-version = "0.11.1"
+version = "0.11.2"
 description = "Parler"
 authors = ["cjpais"]
 edition = "2021"
@@ -16,7 +16,7 @@ incremental = true # Compile your binary in smaller steps.
 # The `_lib` suffix may seem redundant but it is necessary
 # to make the lib name unique and wouldn't conflict with the bin name.
 # This seems to be only an issue on Windows, see https://github.com/rust-lang/cargo/issues/8519
-name = "parler_app_lib"
+name = "murmur_app_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 # [[bin]]

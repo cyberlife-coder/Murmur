@@ -467,11 +467,11 @@ pub fn run(cli_args: CliArgs) {
                     Target::new(if let Some(data_dir) = portable::data_dir() {
                         TargetKind::Folder {
                             path: data_dir.join("logs"),
-                            file_name: Some("handy".into()),
+                            file_name: Some("murmur".into()),
                         }
                     } else {
                         TargetKind::LogDir {
-                            file_name: Some("handy".into()),
+                            file_name: Some("murmur".into()),
                         }
                     })
                     .filter(|metadata| {
@@ -523,12 +523,12 @@ pub fn run(cli_args: CliArgs) {
             // aborts the whole app (the setup hook runs inside
             // applicationDidFinishLaunching, where panics cannot unwind).
             if app.get_webview_window("main").is_none() {
-                // Dev builds (productName "ParlerDev") get a distinct window
-                // title so the window can't be mistaken for a production Parler.
+                // Dev builds (productName "MurmurDev") get a distinct window
+                // title so the window can't be mistaken for a production Murmur.
                 let window_title = if app.package_info().name.ends_with("Dev") {
-                    "Parler Dev"
+                    "Murmur Dev"
                 } else {
-                    "Parler"
+                    "Murmur"
                 };
                 let mut win_builder = tauri::WebviewWindowBuilder::new(
                     app,

@@ -11,6 +11,13 @@ build on the corresponding upstream version `X.Y.Z`.
 
 ## [Unreleased]
 
+## [0.11.2-fork.1] - 2026-11-02
+
+### Fixed
+
+- Removed the last upstream names from the binary: tray menu ("Murmur v…"), window titles, CLI (`murmur`), HTTP `X-Title` header sent to LLM providers, crash-log/export filenames, internal lib renamed `murmur_app_lib`.
+
+
 ## [0.11.1-fork.1] - 2026-11-02
 
 ### Fixed
