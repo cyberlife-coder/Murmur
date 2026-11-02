@@ -45,15 +45,15 @@ export const Dialog: React.FC<DialogProps> = ({
   return createPortal(
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       <style>{`
-        @keyframes parler-dialog-fade { from { opacity: 0 } to { opacity: 1 } }
-        @keyframes parler-dialog-pop {
+        @keyframes murmur-dialog-fade { from { opacity: 0 } to { opacity: 1 } }
+        @keyframes murmur-dialog-pop {
           from { opacity: 0; transform: translateY(8px) scale(0.97) }
           to { opacity: 1; transform: translateY(0) scale(1) }
         }
       `}</style>
       <div
         className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"
-        style={{ animation: "parler-dialog-fade 120ms ease-out" }}
+        style={{ animation: "murmur-dialog-fade 120ms ease-out" }}
         onClick={onClose}
       />
       <div
@@ -61,7 +61,7 @@ export const Dialog: React.FC<DialogProps> = ({
         aria-modal="true"
         className={`relative z-10 w-full ${maxWidthClassName} max-h-[86vh] flex flex-col bg-background border border-mid-gray/20 rounded-2xl shadow-2xl overflow-hidden`}
         style={{
-          animation: "parler-dialog-pop 160ms cubic-bezier(0.16,1,0.3,1)",
+          animation: "murmur-dialog-pop 160ms cubic-bezier(0.16,1,0.3,1)",
         }}
       >
         {(title || description) && (

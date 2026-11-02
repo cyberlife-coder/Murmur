@@ -11,6 +11,14 @@ build on the corresponding upstream version `X.Y.Z`.
 
 ## [Unreleased]
 
+## [0.11.1-fork.1] - 2026-11-02
+
+### Fixed
+
+- **No more "Parler"/"Handy" mentions inside the app**: window title, logo, tray, onboarding, settings and all 20 locales now say **Murmur**. Upstream attribution (Melvynx/Parler, MIT) remains only in LICENSE / NOTICE.md / README, as required by the license.
+- Updater endpoint and "check releases" link now point to this fork's releases.
+
+
 ## [0.11.0-fork.1] - 2026-11-02
 
 ### Changed

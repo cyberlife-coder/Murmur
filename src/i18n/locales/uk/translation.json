@@ -97,7 +97,7 @@
     },
     "permissions": {
       "title": "Потрібні дозволи",
-      "description": "Parler потребує деяких дозволів для коректної роботи.",
+      "description": "Murmur потребує деяких дозволів для коректної роботи.",
       "microphone": {
         "title": "Доступ до мікрофона",
         "description": "Потрібен для прослуховування вашого голосу для транскрипції."
@@ -316,11 +316,11 @@
       },
       "autostart": {
         "label": "Запуск при старті системи",
-        "description": "Автоматично запускати Parler при вході в систему"
+        "description": "Автоматично запускати Murmur при вході в систему"
       },
       "showTrayIcon": {
         "label": "Показати значок у треї",
-        "description": "Відображати значок Parler у системному треї."
+        "description": "Відображати значок Murmur у системному треї."
       },
       "overlay": {
         "title": "Позиція оверлею",
@@ -519,7 +519,7 @@
       },
       "updateChecks": {
         "label": "Перевірка оновлень",
-        "description": "Автоматично перевіряти наявність нових версій Parler"
+        "description": "Автоматично перевіряти наявність нових версій Murmur"
       },
       "soundTheme": {
         "label": "Звукова тема",
@@ -587,11 +587,11 @@
       "title": "Інфо",
       "version": {
         "title": "Версія",
-        "description": "Поточна версія Parler"
+        "description": "Поточна версія Murmur"
       },
       "appDataDirectory": {
         "title": "Папка даних програми",
-        "description": "Розташування даних Parler"
+        "description": "Розташування даних Murmur"
       },
       "sourceCode": {
         "title": "Вихідний код",
@@ -600,7 +600,7 @@
       },
       "supportDevelopment": {
         "title": "Підтримати розробку",
-        "description": "Допоможіть нам продовжувати розвивати Parler",
+        "description": "Допоможіть нам продовжувати розвивати Murmur",
         "button": "Підтримати"
       },
       "acknowledgments": {
@@ -608,7 +608,7 @@
         "whisper": {
           "title": "Whisper.cpp",
           "description": "Високопродуктивний інференс моделі автоматичного розпізнавання мовлення Whisper від OpenAI",
-          "details": "Parler використовує Whisper.cpp для швидкої локальної обробки мовлення в текст. Дякуємо за чудову роботу Георгію Герганову та контриб'юторам."
+          "details": "Murmur використовує Whisper.cpp для швидкої локальної обробки мовлення в текст. Дякуємо за чудову роботу Георгію Герганову та контриб'юторам."
         }
       },
       "exportImport": {
@@ -672,7 +672,7 @@
   },
   "accessibility": {
     "permissionsRequired": "Потрібні права доступу",
-    "permissionsDescription": "Parler потребує дозволи доступності для введення транскрибованого тексту.",
+    "permissionsDescription": "Murmur потребує дозволи доступності для введення транскрибованого тексту.",
     "openSettings": "Відкрити Системні налаштування",
     "dismiss": "Закрити"
   },
@@ -693,7 +693,7 @@
   },
   "appLanguage": {
     "title": "Мова інтерфейсу",
-    "description": "Змінити мову інтерфейсу Parler"
+    "description": "Змінити мову інтерфейсу Murmur"
   },
   "overlay": {
     "transcribing": "Обробка...",

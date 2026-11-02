@@ -97,7 +97,7 @@
     },
     "permissions": {
       "title": "İzinler Gerekli",
-      "description": "Parler'in düzgün çalışabilmesi için birkaç izne ihtiyacı var.",
+      "description": "Murmur'in düzgün çalışabilmesi için birkaç izne ihtiyacı var.",
       "microphone": {
         "title": "Mikrofon Erişimi",
         "description": "Sesinizi transkripsiyon için alabilmek için gereklidir."
@@ -206,7 +206,7 @@
     "general": {
       "title": "Genel",
       "shortcut": {
-        "title": "Parler Kısayolları",
+        "title": "Murmur Kısayolları",
         "description": "Sesle yazma kaydını başlatmak için klavye kısayollarını yapılandırın",
         "loading": "Kısayollar yükleniyor...",
         "none": "Kısayol yapılandırılmadı",
@@ -316,11 +316,11 @@
       },
       "autostart": {
         "label": "Başlangıçta Çalıştır",
-        "description": "Bilgisayara giriş yaptığınızda Parler otomatik olarak başlatılır."
+        "description": "Bilgisayara giriş yaptığınızda Murmur otomatik olarak başlatılır."
       },
       "showTrayIcon": {
         "label": "Tepsi simgesini göster",
-        "description": "Parler simgesini sistem tepsisinde göster."
+        "description": "Murmur simgesini sistem tepsisinde göster."
       },
       "overlay": {
         "title": "Overlay Konumu",
@@ -519,7 +519,7 @@
       },
       "updateChecks": {
         "label": "Güncellemeleri Kontrol Et",
-        "description": "Parler için yeni sürümleri otomatik olarak kontrol eder"
+        "description": "Murmur için yeni sürümleri otomatik olarak kontrol eder"
       },
       "soundTheme": {
         "label": "Ses Teması",
@@ -587,11 +587,11 @@
       "title": "Hakkında",
       "version": {
         "title": "Sürüm",
-        "description": "Parler'nin mevcut sürümü"
+        "description": "Murmur'nin mevcut sürümü"
       },
       "appDataDirectory": {
         "title": "Uygulama Veri Dizini",
-        "description": "Parler'nin verilerini sakladığı konum"
+        "description": "Murmur'nin verilerini sakladığı konum"
       },
       "sourceCode": {
         "title": "Kaynak Kodu",
@@ -600,7 +600,7 @@
       },
       "supportDevelopment": {
         "title": "Geliştirmeyi Destekle",
-        "description": "Parler'yi geliştirmeye devam etmemize yardımcı olun",
+        "description": "Murmur'yi geliştirmeye devam etmemize yardımcı olun",
         "button": "Bağış Yap"
       },
       "acknowledgments": {
@@ -608,7 +608,7 @@
         "whisper": {
           "title": "Whisper.cpp",
           "description": "OpenAI'nin Whisper otomatik konuşma tanıma modelinin yüksek performanslı çıkarımı",
-          "details": "Parler, hızlı ve yerel konuşmadan metne dönüştürme için Whisper.cpp kullanır. Georgi Gerganov ve katkıda bulunanların harika çalışmaları için teşekkür ederiz."
+          "details": "Murmur, hızlı ve yerel konuşmadan metne dönüştürme için Whisper.cpp kullanır. Georgi Gerganov ve katkıda bulunanların harika çalışmaları için teşekkür ederiz."
         }
       },
       "exportImport": {
@@ -672,7 +672,7 @@
   },
   "accessibility": {
     "permissionsRequired": "Erişilebilirlik İzinleri Gerekli",
-    "permissionsDescription": "Parler, transkribe edilen metni yazabilmek için erişilebilirlik izinlerine ihtiyaç duyar.",
+    "permissionsDescription": "Murmur, transkribe edilen metni yazabilmek için erişilebilirlik izinlerine ihtiyaç duyar.",
     "openSettings": "Sistem Ayarlarını Aç",
     "dismiss": "Yoksay"
   },
@@ -693,7 +693,7 @@
   },
   "appLanguage": {
     "title": "Uygulama Dili",
-    "description": "Parler arayüzünün dilini değiştirin"
+    "description": "Murmur arayüzünün dilini değiştirin"
   },
   "overlay": {
     "transcribing": "Transkribe ediliyor...",

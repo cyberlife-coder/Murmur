@@ -1,4 +1,4 @@
-const ParlerTextLogo = ({
+const MurmurTextLogo = ({
   width,
   className,
 }: {
@@ -17,9 +17,9 @@ const ParlerTextLogo = ({
         width,
       }}
     >
-      <span className="text-logo-primary">PARLER</span>
+      <span className="text-logo-primary">MURMUR</span>
     </div>
   );
 };
 
-export default ParlerTextLogo;
+export default MurmurTextLogo;

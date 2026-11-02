@@ -20,7 +20,7 @@ export const ExportImportSettings: React.FC<ExportImportSettingsProps> = ({
   const handleExport = async () => {
     try {
       const path = await save({
-        defaultPath: "parler-settings.json",
+        defaultPath: "murmur-settings.json",
         filters: [{ name: "JSON", extensions: ["json"] }],
       });
       if (!path) return;
