@@ -14,6 +14,11 @@ jobs:
     runs-on: windows-latest
     permissions:
       contents: write
+    env:
+      # Short workspace path: whisper-rs-sys builds whisper.cpp + a Vulkan
+      # shader ExternalProject under target/... — the default D:\a\<repo>\<repo>
+      # path overflows MAX_PATH and breaks MSBuild (FTK1011 / broken compiler).
+      GITHUB_WORKSPACE: D:/p
     steps:
       - name: Enable long paths (Windows)
         shell: pwsh
@@ -26,10 +31,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          # Short workspace path: whisper-rs-sys builds whisper.cpp + a Vulkan
-          # shader ExternalProject under target/... — the default D:\a\<repo>\<repo>
-          # path overflows MAX_PATH and breaks MSBuild (FTK1011 / broken compiler).
-          path: D:/p
 
       - name: Get version from tauri.conf.json
         id: get-version
