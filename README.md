@@ -47,8 +47,8 @@ On top of upstream Handy, this fork adds:
 
 ### Installation
 
-1. **This fork — macOS (Apple Silicon)**: download the DMG from the [fork releases](https://github.com/cyberlife-coder/Murmur/releases/tag/v0.11.0-fork.1) (check `SHA256SUMS.txt`), open it and drag **Parler** into **Applications**. On first launch, right-click → Open (the build is not notarized).
-2. **This fork — Windows (x64)**: download `Parler_0.10.0_x64-setup.exe` (NSIS) or the `.msi` from [v0.11.0-windows](https://github.com/cyberlife-coder/Murmur/releases/tag/v0.11.0-windows). Unsigned build: on SmartScreen warning, click "More info" → "Run anyway".
+1. **This fork — macOS (Apple Silicon)**: download the DMG from the [fork releases](https://github.com/cyberlife-coder/Murmur/releases/tag/v0.11.0-fork.1) (check `SHA256SUMS.txt`), open it and drag **Murmur** into **Applications**. On first launch, right-click → Open (the build is not notarized).
+2. **This fork — Windows (x64)**: download `Murmur_0.11.0_x64-setup.exe` (NSIS) or the `.msi` from [v0.11.0-windows](https://github.com/cyberlife-coder/Murmur/releases/tag/v0.11.0-windows). Unsigned build: on SmartScreen warning, click "More info" → "Run anyway".
 3. **Upstream Handy**: download from the [upstream releases page](https://github.com/cjpais/Handy/releases) or the [website](https://handy.computer)
    - **macOS**: Also available via [Homebrew cask](https://formulae.brew.sh/cask/handy): `brew install --cask handy`
    - **Windows**: Also available via [winget](https://github.com/microsoft/winget-pkgs): `winget install cjpais.Handy` \
