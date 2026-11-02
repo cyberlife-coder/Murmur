@@ -41,14 +41,15 @@ The process is entirely local:
 On top of upstream Handy, this fork adds:
 
 - **Custom LLM endpoint**: in Settings → Models → Processing → Add model, the *Custom* provider has an editable **Base URL** field, so post-processing actions can run against any OpenAI-compatible API (Ollama, vLLM, LM Studio, a self-hosted gateway…). The model list is fetched from that endpoint.
-- **macOS release builds** published as DMG on this repo's [releases page](https://github.com/cyberlife-coder/Parler/releases) (ad-hoc signed — on first launch, right-click the app → Open).
+- **Release builds on GitHub Actions**: macOS DMG (Apple Silicon) and Windows x64 (NSIS + MSI) on this repo's [releases page](https://github.com/cyberlife-coder/Parler/releases) — see [CHANGELOG.md](CHANGELOG.md).
 
 ## Quick Start
 
 ### Installation
 
 1. **This fork — macOS (Apple Silicon)**: download the DMG from the [fork releases](https://github.com/cyberlife-coder/Parler/releases/tag/v0.9.1-fork.1) (check `SHA256SUMS.txt`), open it and drag **Parler** into **Applications**. On first launch, right-click → Open (the build is not notarized).
-2. **Upstream Handy**: download from the [upstream releases page](https://github.com/cjpais/Handy/releases) or the [website](https://handy.computer)
+2. **This fork — Windows (x64)**: download `Parler_0.9.1_x64-setup.exe` (NSIS) or the `.msi` from [v0.9.1-windows](https://github.com/cyberlife-coder/Parler/releases/tag/v0.9.1-windows). Unsigned build: on SmartScreen warning, click "More info" → "Run anyway".
+3. **Upstream Handy**: download from the [upstream releases page](https://github.com/cjpais/Handy/releases) or the [website](https://handy.computer)
    - **macOS**: Also available via [Homebrew cask](https://formulae.brew.sh/cask/handy): `brew install --cask handy`
    - **Windows**: Also available via [winget](https://github.com/microsoft/winget-pkgs): `winget install cjpais.Handy` \
      **Note:** The Homebrew cask and winget package are not maintained by the Handy developers.
