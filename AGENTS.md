@@ -112,3 +112,22 @@ Settings are stored using Tauri's store plugin with reactive updates:
 ### Single Instance Architecture
 
 The app enforces single instance behavior - launching when already running brings the settings window to front rather than creating a new process.
+
+## Release & Versioning (fork rules)
+
+Every user-facing change MUST follow semver and update the changelog:
+
+1. **Bump the version** in BOTH `package.json` and `src-tauri/tauri.conf.json`:
+   - new feature → MINOR (`0.9.1` → `0.10.0`)
+   - bug fix → PATCH (`0.9.1` → `0.9.2`)
+   - breaking change → MAJOR once past 1.0, otherwise MINOR while `0.x`
+2. **Update `CHANGELOG.md`** (Keep a Changelog): add the entry under a new
+   `## [X.Y.Z-fork.N] - YYYY-MM-DD` heading (Added / Changed / Fixed / Security),
+   and move items out of `[Unreleased]`.
+3. Commit with a conventional-commit message (`feat:`, `fix:`, `docs:`, `ci:`, `i18n:`…).
+4. Push to `public` (the fork repo `cyberlife-coder/Parler`), then publish the
+   release artifacts:
+   - macOS: build DMG locally, `gh release create vX.Y.Z-fork.N` with the DMG + `SHA256SUMS.txt`
+   - Windows: `gh workflow run build-windows.yml --repo cyberlife-coder/Parler -f create-release=true`
+     (tags it `vX.Y.Z-windows` automatically)
+5. Doc-only changes (README/AGENTS.md) do NOT bump the version and do NOT need a release.
