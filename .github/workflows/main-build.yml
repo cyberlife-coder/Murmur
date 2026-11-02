@@ -18,6 +18,8 @@ concurrency:
 
 jobs:
   build:
+    # Upstream-only: requires Apple signing secrets that forks don't have.
+    if: github.repository == 'Melvynx/Parler'
     permissions:
       contents: write
     strategy:

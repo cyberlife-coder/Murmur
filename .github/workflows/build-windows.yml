@@ -98,9 +98,9 @@ jobs:
           tag_name: v${{ steps.get-version.outputs.version }}-windows
           name: v${{ steps.get-version.outputs.version }} (Windows)
           body: |
-            Windows build of Parler.
+            Windows build (NSIS .exe + MSI) of this fork of [Melvynx/Parler](https://github.com/Melvynx/Parler) (MIT).
 
-            Built from upstream Melvynx/Parler.
+            Fork changes: editable **Base URL** for the Custom LLM post-processing provider, e2e test, dependency security bumps. See [CHANGELOG.md](https://github.com/cyberlife-coder/Parler/blob/main/CHANGELOG.md).
 
             Note: This is an unsigned build. Windows SmartScreen may show a warning on first launch. Click "More info" then "Run anyway".
           files: artifacts/**/*
