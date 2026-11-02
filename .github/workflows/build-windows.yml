@@ -70,7 +70,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: parler-windows-x64
+          name: murmur-windows-x64
           path: |
             C:/t/release/bundle/msi/*.msi
             C:/t/release/bundle/nsis/*.exe
@@ -96,7 +96,7 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
-          name: parler-windows-x64
+          name: murmur-windows-x64
           path: artifacts/
 
       - name: List artifacts
@@ -112,7 +112,7 @@ jobs:
           body: |
             Windows build (NSIS .exe + MSI) of this fork of [Melvynx/Parler](https://github.com/Melvynx/Parler) (MIT).
 
-            Fork changes: editable **Base URL** for the Custom LLM post-processing provider, e2e test, dependency security bumps. See [CHANGELOG.md](https://github.com/cyberlife-coder/Parler/blob/main/CHANGELOG.md).
+            Fork changes: editable **Base URL** for the Custom LLM post-processing provider, e2e test, dependency security bumps. See [CHANGELOG.md](https://github.com/cyberlife-coder/Murmur/blob/main/CHANGELOG.md).
 
             Note: This is an unsigned build. Windows SmartScreen may show a warning on first launch. Click "More info" then "Run anyway".
           files: artifacts/**/*

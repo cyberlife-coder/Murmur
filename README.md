@@ -1,25 +1,25 @@
-# Handy
+# Murmur
 
 [![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/invite/WVBeWsNXK4)
 
 > **This is a fork of [Melvynx/Parler](https://github.com/Melvynx/Parler) (Handy by CJ Pais, MIT License).**
 > Fork changes are listed in [CHANGELOG.md](CHANGELOG.md), third-party licenses in [NOTICE.md](NOTICE.md).
-> Latest fork build (macOS DMG): [releases page](https://github.com/cyberlife-coder/Parler/releases).
+> Latest fork build (macOS DMG): [releases page](https://github.com/cyberlife-coder/Murmur/releases).
 
 **A free, open source, and extensible speech-to-text application that works completely offline.**
 
-Handy is a cross-platform desktop application that provides simple, privacy-focused speech transcription. Press a shortcut, speak, and have your words appear in any text field. This happens on your own computer without sending any information to the cloud.
+Murmur is a cross-platform desktop application that provides simple, privacy-focused speech transcription. Press a shortcut, speak, and have your words appear in any text field. This happens on your own computer without sending any information to the cloud.
 
-## Why Handy?
+## Why Murmur?
 
-Handy was created to fill the gap for a truly open source, extensible speech-to-text tool. As stated on [handy.computer](https://handy.computer):
+Murmur is a fork of Handy (by CJ Pais), created to fill the gap for a truly open source, extensible speech-to-text tool. As stated on [handy.computer](https://handy.computer):
 
 - **Free**: Accessibility tooling belongs in everyone's hands, not behind a paywall
-- **Open Source**: Together we can build further. Extend Handy for yourself and contribute to something bigger
+- **Open Source**: Together we can build further. Extend Murmur for yourself and contribute to something bigger
 - **Private**: Your voice stays on your computer. Get transcriptions without sending audio to the cloud
 - **Simple**: One tool, one job. Transcribe what you say and put it into a text box
 
-Handy isn't trying to be the best speech-to-text app—it's trying to be the most forkable one.
+Murmur isn't trying to be the best speech-to-text app—it's trying to be the most forkable one.
 
 ## How It Works
 
@@ -41,14 +41,14 @@ The process is entirely local:
 On top of upstream Handy, this fork adds:
 
 - **Custom LLM endpoint**: in Settings → Models → Processing → Add model, the _Custom_ provider has an editable **Base URL** field, so post-processing actions can run against any OpenAI-compatible API (Ollama, vLLM, LM Studio, a self-hosted gateway…). The model list is fetched from that endpoint.
-- **Release builds on GitHub Actions**: macOS DMG (Apple Silicon) and Windows x64 (NSIS + MSI) on this repo's [releases page](https://github.com/cyberlife-coder/Parler/releases) — see [CHANGELOG.md](CHANGELOG.md).
+- **Release builds on GitHub Actions**: macOS DMG (Apple Silicon) and Windows x64 (NSIS + MSI) on this repo's [releases page](https://github.com/cyberlife-coder/Murmur/releases) — see [CHANGELOG.md](CHANGELOG.md).
 
 ## Quick Start
 
 ### Installation
 
-1. **This fork — macOS (Apple Silicon)**: download the DMG from the [fork releases](https://github.com/cyberlife-coder/Parler/releases/tag/v0.10.0-fork.1) (check `SHA256SUMS.txt`), open it and drag **Parler** into **Applications**. On first launch, right-click → Open (the build is not notarized).
-2. **This fork — Windows (x64)**: download `Parler_0.10.0_x64-setup.exe` (NSIS) or the `.msi` from [v0.10.0-windows](https://github.com/cyberlife-coder/Parler/releases/tag/v0.10.0-windows). Unsigned build: on SmartScreen warning, click "More info" → "Run anyway".
+1. **This fork — macOS (Apple Silicon)**: download the DMG from the [fork releases](https://github.com/cyberlife-coder/Murmur/releases/tag/v0.10.0-fork.1) (check `SHA256SUMS.txt`), open it and drag **Parler** into **Applications**. On first launch, right-click → Open (the build is not notarized).
+2. **This fork — Windows (x64)**: download `Parler_0.10.0_x64-setup.exe` (NSIS) or the `.msi` from [v0.10.0-windows](https://github.com/cyberlife-coder/Murmur/releases/tag/v0.10.0-windows). Unsigned build: on SmartScreen warning, click "More info" → "Run anyway".
 3. **Upstream Handy**: download from the [upstream releases page](https://github.com/cjpais/Handy/releases) or the [website](https://handy.computer)
    - **macOS**: Also available via [Homebrew cask](https://formulae.brew.sh/cask/handy): `brew install --cask handy`
    - **Windows**: Also available via [winget](https://github.com/microsoft/winget-pkgs): `winget install cjpais.Handy` \
@@ -66,13 +66,13 @@ For detailed build instructions including platform-specific requirements, see [B
 
 <a href="https://www.raycast.com/mattiacolombomc/handy" title="Install Handy Raycast Extension"><img src="https://www.raycast.com/mattiacolombomc/handy/install_button@2x.png?v=1.1" height="64" style="height: 64px;" alt="Install handy Raycast Extension" /></a>
 
-Control Handy from [Raycast](https://www.raycast.com) — start/stop recording, browse transcript history, manage dictionary, switch models and languages.
+Control Murmur from [Raycast](https://www.raycast.com) — start/stop recording, browse transcript history, manage dictionary, switch models and languages.
 
 [Source](https://github.com/mattiacolombomc/raycast-handy) · by [@mattiacolombomc](https://github.com/mattiacolombomc)
 
 ## Architecture
 
-Handy is built as a Tauri application combining:
+Murmur is built as a Tauri application combining:
 
 - **Frontend**: React + TypeScript with Tailwind CSS for the settings UI
 - **Backend**: Rust for system integration, audio processing, and ML inference
@@ -86,7 +86,7 @@ Handy is built as a Tauri application combining:
 
 ### Debug Mode
 
-Handy includes an advanced debug mode for development and troubleshooting. Access it by pressing:
+Murmur includes an advanced debug mode for development and troubleshooting. Access it by pressing:
 
 - **macOS**: `Cmd+Shift+D`
 - **Windows/Linux**: `Ctrl+Shift+D`
@@ -278,7 +278,7 @@ We're actively working on several features and improvements. Contributions and f
 
 ## Verify Release Signatures
 
-> **Fork builds** (`vX.Y.Z-fork.N` on [this repo's releases](https://github.com/cyberlife-coder/Parler/releases)) are **not** signed with the updater key — verify them with the SHA256 checksum instead: `sha256sum -c SHA256SUMS.txt`.
+> **Fork builds** (`vX.Y.Z-fork.N` on [this repo's releases](https://github.com/cyberlife-coder/Murmur/releases)) are **not** signed with the updater key — verify them with the SHA256 checksum instead: `sha256sum -c SHA256SUMS.txt`.
 
 Upstream Handy release artifacts are signed with Tauri's updater signature format. The public key is stored in [`src-tauri/tauri.conf.json`](src-tauri/tauri.conf.json) under `plugins.updater.pubkey`.
 

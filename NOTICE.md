@@ -1,6 +1,6 @@
 # NOTICE
 
-This project is a fork of **Parler** (a.k.a. _Handy_), originally created by
+This project (**Murmur**) is a fork of **Parler** (a.k.a. _Handy_), originally created by
 **CJ Pais / Melvynx** — <https://github.com/Melvynx/Parler>
 
 The upstream project is licensed under the MIT License. The original copyright

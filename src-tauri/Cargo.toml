@@ -1,11 +1,11 @@
 [package]
-name = "parler"
-version = "0.10.0"
+name = "murmur"
+version = "0.11.0"
 description = "Parler"
 authors = ["cjpais"]
 edition = "2021"
 license = "MIT"
-default-run = "parler"
+default-run = "murmur"
 
 [profile.dev]
 incremental = true # Compile your binary in smaller steps.
