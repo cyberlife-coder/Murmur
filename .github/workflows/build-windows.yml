@@ -122,4 +122,6 @@ jobs:
             Note: This is an unsigned build. Windows SmartScreen may show a warning on first launch. Click "More info" then "Run anyway".
           files: artifacts/**/*
           draft: false
-          prerelease: false
+          # prerelease so it never steals GitHub's "latest" badge from the macOS
+          # release that carries the merged latest.json updater manifest
+          prerelease: true
