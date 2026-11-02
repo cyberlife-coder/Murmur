@@ -92,7 +92,8 @@
     },
     "errors": {
       "loadModels": "利用可能なモデルの読み込みに失敗しました",
-      "downloadModel": "モデルのダウンロードに失敗しました: {{error}}"
+      "downloadModel": "モデルのダウンロードに失敗しました: {{error}}",
+      "selectModel": "モデルを選択してください"
     },
     "permissions": {
       "title": "権限が必要です",
@@ -181,6 +182,25 @@
         "fetchModels": "Refresh models",
         "label": "Label (optional)",
         "labelPlaceholder": "Display name for this model"
+      },
+      "tabs": {
+        "transcription": "文字起こし",
+        "processing": "後処理"
+      },
+      "processingModels": {
+        "title": "処理モデル",
+        "description": "後処理アクションで使用する LLM モデルを保存します。",
+        "noModels": "保存された処理モデルはまだありません。アクションで使うには追加してください。",
+        "addModel": "処理モデルを追加",
+        "provider": "プロバイダー",
+        "apiKey": "APIキー",
+        "apiKeyPlaceholder": "APIキーを入力",
+        "model": "モデル",
+        "modelPlaceholder": "モデルを選択または入力",
+        "fetchModels": "モデルを取得",
+        "save": "保存",
+        "cancel": "キャンセル",
+        "alreadySaved": "このモデルはすでに保存されています。"
       }
     },
     "general": {
@@ -204,13 +224,22 @@
           "transcribe_with_post_process": {
             "name": "後処理ホットキー",
             "description": "オプション：文字起こしに常にAI後処理を適用する専用ホットキー。"
+          },
+          "copy_latest_history": {
+            "name": "最新の文字起こしをコピー",
+            "description": "最新の文字起こしをクリップボードにコピーします。"
+          },
+          "show_history": {
+            "name": "履歴を表示",
+            "description": "アプリのウィンドウを開いて履歴タブに移動します。"
           }
         },
         "errors": {
           "restore": "元のショートカットを復元できませんでした",
           "set": "ショートカットを設定できませんでした: {{error}}",
           "reset": "ショートカットを元の値にリセットできませんでした"
-        }
+        },
+        "clickToSet": "クリックして設定"
       },
       "language": {
         "title": "言語",
@@ -255,7 +284,8 @@
         "output": "出力",
         "transcription": "文字起こし",
         "history": "履歴",
-        "experimental": "実験的"
+        "experimental": "実験的",
+        "cloudModels": "クラウドモデル"
       },
       "experimentalToggle": {
         "label": "実験的機能",
@@ -450,7 +480,8 @@
         "empty": "No actions yet. Create one to start post-processing your transcriptions.",
         "noModelShort": "No model",
         "dialogSubtitle": "Configure how this action rewrites your transcription.",
-        "emptyTitle": "No actions yet"
+        "emptyTitle": "No actions yet",
+        "shortcut": "ショートカット"
       },
       "defaultShortcut": {
         "title": "Default shortcut",
@@ -579,7 +610,25 @@
           "description": "OpenAIのWhisper自動音声認識モデルの高性能推論",
           "details": "Parlerは高速でローカルな音声からテキストへの変換にWhisper.cppを使用しています。Georgi Gerganov氏と貢献者の皆様の素晴らしい仕事に感謝します。"
         }
+      },
+      "exportImport": {
+        "title": "設定のエクスポート / インポート",
+        "description": "設定を別のコンピューターに移行します",
+        "export": "エクスポート",
+        "import": "インポート",
+        "exportSuccess": "設定をエクスポートしました",
+        "importSuccess": "設定をインポートしました"
       }
+    },
+    "longAudioModel": {
+      "title": "長時間音声用モデル",
+      "description": "録音時間がしきい値を超えたら自動的に別のモデルに切り替えます。",
+      "disabled": "無効",
+      "modelLabel": "長時間録音用モデル",
+      "modelDescription": "しきい値を超える長時間録音に使用するモデルを選択します。",
+      "thresholdLabel": "継続時間のしきい値（秒）",
+      "thresholdDescription": "録音がこの時間を超えたら長時間音声用モデルに切り替えます。",
+      "seconds": "{{value}}秒"
     }
   },
   "footer": {
@@ -648,6 +697,7 @@
   },
   "overlay": {
     "transcribing": "文字起こし中...",
-    "processing": "処理中..."
+    "processing": "処理中...",
+    "cancelConfirm": "もう一度 Esc でキャンセル"
   }
 }

@@ -92,7 +92,8 @@
     },
     "errors": {
       "loadModels": "Échec du chargement des modèles disponibles",
-      "downloadModel": "Échec du téléchargement du modèle : {{error}}"
+      "downloadModel": "Échec du téléchargement du modèle : {{error}}",
+      "selectModel": "Veuillez sélectionner un modèle"
     },
     "permissions": {
       "title": "Autorisations requises",
@@ -181,6 +182,25 @@
         "fetchModels": "Actualiser les modèles",
         "label": "Libellé (optionnel)",
         "labelPlaceholder": "Nom d’affichage de ce modèle"
+      },
+      "tabs": {
+        "transcription": "Transcription",
+        "processing": "Post-traitement"
+      },
+      "processingModels": {
+        "title": "Modèles de traitement",
+        "description": "Enregistrer des modèles LLM à utiliser dans les actions de post-traitement.",
+        "noModels": "Aucun modèle de traitement enregistré. Ajoutez-en un pour l'utiliser dans vos actions.",
+        "addModel": "Ajouter un modèle de traitement",
+        "provider": "Fournisseur",
+        "apiKey": "Clé API",
+        "apiKeyPlaceholder": "Entrez la clé API",
+        "model": "Modèle",
+        "modelPlaceholder": "Sélectionnez ou saisissez un modèle",
+        "fetchModels": "Récupérer les modèles",
+        "save": "Enregistrer",
+        "cancel": "Annuler",
+        "alreadySaved": "Ce modèle est déjà enregistré."
       }
     },
     "general": {
@@ -264,7 +284,8 @@
         "output": "Sortie",
         "transcription": "Transcription",
         "history": "Historique",
-        "experimental": "Expérimental"
+        "experimental": "Expérimental",
+        "cloudModels": "Modèles cloud"
       },
       "experimentalToggle": {
         "label": "Fonctionnalités Expérimentales",
@@ -459,7 +480,8 @@
         "empty": "Aucune action pour l’instant. Créez-en une pour post-traiter vos transcriptions.",
         "noModelShort": "Aucun modèle",
         "dialogSubtitle": "Configurez la façon dont cette action réécrit votre transcription.",
-        "emptyTitle": "Aucune action"
+        "emptyTitle": "Aucune action",
+        "shortcut": "Raccourci"
       },
       "defaultShortcut": {
         "title": "Raccourci par défaut",
@@ -597,6 +619,16 @@
           "details": "Parler utilise Whisper.cpp pour un traitement rapide et local de la parole en texte. Merci au travail incroyable de Georgi Gerganov et des contributeurs."
         }
       }
+    },
+    "longAudioModel": {
+      "title": "Modèle pour longs enregistrements",
+      "description": "Changer automatiquement de modèle quand la durée d'enregistrement dépasse le seuil.",
+      "disabled": "Désactivé",
+      "modelLabel": "Modèle pour les longs enregistrements",
+      "modelDescription": "Sélectionnez le modèle à utiliser pour les enregistrements plus longs que le seuil.",
+      "thresholdLabel": "Seuil de durée (secondes)",
+      "thresholdDescription": "Basculer vers le modèle long quand l'enregistrement dépasse cette durée.",
+      "seconds": "{{value}} s"
     }
   },
   "footer": {

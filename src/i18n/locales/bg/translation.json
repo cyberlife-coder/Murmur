@@ -92,7 +92,8 @@
     },
     "errors": {
       "loadModels": "Неуспешно зареждане на наличните модели",
-      "downloadModel": "Неуспешно изтегляне на модела: {{error}}"
+      "downloadModel": "Неуспешно изтегляне на модела: {{error}}",
+      "selectModel": "Моля, изберете модел"
     },
     "permissions": {
       "title": "Необходими разрешения",
@@ -112,7 +113,8 @@
       "errors": {
         "checkFailed": "Проверката на разрешенията не бе успешна. Опитайте отново.",
         "requestFailed": "Заявката за разрешение не бе успешна. Опитайте отново."
-      }
+      },
+      "skip": "Пропусни засега"
     }
   },
   "modelSelector": {
@@ -172,13 +174,22 @@
           "transcribe_with_post_process": {
             "name": "Бърз клавиш за постобработка",
             "description": "По избор: отделна комбинация, която винаги прилага ИИ постобработка върху транскрипцията."
+          },
+          "copy_latest_history": {
+            "name": "Копирай последната транскрипция",
+            "description": "Копира последната транскрипция в клипборда."
+          },
+          "show_history": {
+            "name": "Покажи историята",
+            "description": "Отваря прозореца на приложението и преминава към раздела История."
           }
         },
         "errors": {
           "restore": "Неуспешно възстановяване на оригиналния бърз клавиш",
           "set": "Неуспешно задаване на бързия клавиш: {{error}}",
           "reset": "Неуспешно нулиране на бързия клавиш към първоначалната стойност"
-        }
+        },
+        "clickToSet": "Кликнете, за да зададете"
       },
       "language": {
         "title": "Език",
@@ -222,6 +233,25 @@
         "fetchModels": "Refresh models",
         "label": "Label (optional)",
         "labelPlaceholder": "Display name for this model"
+      },
+      "tabs": {
+        "transcription": "Транскрипция",
+        "processing": "Обработка"
+      },
+      "processingModels": {
+        "title": "Модели за обработка",
+        "description": "Запазвайте LLM модели за използване в действия за обработка.",
+        "noModels": "Все още няма запазени модели за обработка. Добавете един, за да го използвате в действия.",
+        "addModel": "Добави модел за обработка",
+        "provider": "Доставчик",
+        "apiKey": "API ключ",
+        "apiKeyPlaceholder": "Въведете API ключ",
+        "model": "Модел",
+        "modelPlaceholder": "Изберете или въведете модел",
+        "fetchModels": "Изтегли модели",
+        "save": "Запази",
+        "cancel": "Отказ",
+        "alreadySaved": "Този модел вече е запазен."
       }
     },
     "sound": {
@@ -254,7 +284,8 @@
         "output": "Изход",
         "transcription": "Транскрипция",
         "history": "История",
-        "experimental": "Експериментални"
+        "experimental": "Експериментални",
+        "cloudModels": "Облачни модели"
       },
       "experimentalToggle": {
         "label": "Експериментални функции",
@@ -449,7 +480,8 @@
         "empty": "No actions yet. Create one to start post-processing your transcriptions.",
         "noModelShort": "No model",
         "dialogSubtitle": "Configure how this action rewrites your transcription.",
-        "emptyTitle": "No actions yet"
+        "emptyTitle": "No actions yet",
+        "shortcut": "Клавишна комбинация"
       },
       "defaultShortcut": {
         "title": "Default shortcut",
@@ -578,7 +610,25 @@
           "description": "Високопроизводително изпълнение на автоматичния модел за разпознаване на реч Whisper на OpenAI",
           "details": "Handy използва Whisper.cpp за бързо локално реч-към-текст. Благодарности на Georgi Gerganov и сътрудниците за отличната работа."
         }
+      },
+      "exportImport": {
+        "title": "Експорт / Импорт на настройките",
+        "description": "Прехвърлете конфигурацията си на друг компютър",
+        "export": "Експорт",
+        "import": "Импорт",
+        "exportSuccess": "Настройките са експортирани успешно",
+        "importSuccess": "Настройките са импортирани успешно"
       }
+    },
+    "longAudioModel": {
+      "title": "Модел за дълги записи",
+      "description": "Автоматично превключва на друг модел, когато записът надвиши прага.",
+      "disabled": "Изключено",
+      "modelLabel": "Модел за дълги записи",
+      "modelDescription": "Изберете модел за записи, по-дълги от прага.",
+      "thresholdLabel": "Праг на продължителност (секунди)",
+      "thresholdDescription": "Превключване към модела за дълго аудио, когато записът надвиши тази продължителност.",
+      "seconds": "{{value}} с"
     }
   },
   "footer": {
@@ -647,6 +697,7 @@
   },
   "overlay": {
     "transcribing": "Транскрибиране...",
-    "processing": "Обработка..."
+    "processing": "Обработка...",
+    "cancelConfirm": "Натиснете Esc още веднъж, за да отмените"
   }
 }

@@ -92,7 +92,8 @@
     },
     "errors": {
       "loadModels": "טעינת המודלים הזמינים נכשלה",
-      "downloadModel": "הורדת המודל נכשלה: {{error}}"
+      "downloadModel": "הורדת המודל נכשלה: {{error}}",
+      "selectModel": "אנא בחר מודל"
     },
     "permissions": {
       "title": "נדרשות הרשאות",
@@ -112,7 +113,8 @@
       "errors": {
         "checkFailed": "בדיקת ההרשאות נכשלה. נסה שוב.",
         "requestFailed": "בקשת ההרשאה נכשלה. נסה שוב."
-      }
+      },
+      "skip": "דלג לעכשיו"
     }
   },
   "modelSelector": {
@@ -172,13 +174,22 @@
           "transcribe_with_post_process": {
             "name": "קיצור לעיבוד משלים",
             "description": "אופציונלי: קיצור מקשים ייעודי שתמיד מפעיל עיבוד AI על התמלול."
+          },
+          "copy_latest_history": {
+            "name": "העתק תמלול אחרון",
+            "description": "מעתיק את התמלול האחרון ללוח."
+          },
+          "show_history": {
+            "name": "הצג היסטוריה",
+            "description": "פותח את חלון האפליקציה ועובר לכרטיסיית ההיסטוריה."
           }
         },
         "errors": {
           "restore": "שחזור קיצור הדרך המקורי נכשל",
           "set": "הגדרת קיצור הדרך נכשלה: {{error}}",
           "reset": "איפוס קיצור הדרך לערך המקורי נכשל"
-        }
+        },
+        "clickToSet": "לחץ להגדרה"
       },
       "language": {
         "title": "שפה",
@@ -222,6 +233,25 @@
         "fetchModels": "Refresh models",
         "label": "Label (optional)",
         "labelPlaceholder": "Display name for this model"
+      },
+      "tabs": {
+        "transcription": "תמלול",
+        "processing": "עיבוד"
+      },
+      "processingModels": {
+        "title": "מודלים עיבוד",
+        "description": "שמור מודלי LLM לשימוש בפעולות עיבוד.",
+        "noModels": "אין מודלי עיבוד שמורים עדיין. הוסף אחד כדי להשתמש בפעולות.",
+        "addModel": "הוסף מודל עיבוד",
+        "provider": "ספק",
+        "apiKey": "מפתח API",
+        "apiKeyPlaceholder": "הזן מפתח API",
+        "model": "מודל",
+        "modelPlaceholder": "בחר או הקלד מודל",
+        "fetchModels": "קבל מודלים",
+        "save": "שמור",
+        "cancel": "ביטול",
+        "alreadySaved": "המודל הזה כבר נשמר."
       }
     },
     "sound": {
@@ -254,7 +284,8 @@
         "output": "פלט",
         "transcription": "תמלול",
         "history": "היסטוריה",
-        "experimental": "ניסיוני"
+        "experimental": "ניסיוני",
+        "cloudModels": "מודלי ענן"
       },
       "experimentalToggle": {
         "label": "תכונות ניסיוניות",
@@ -449,7 +480,8 @@
         "empty": "No actions yet. Create one to start post-processing your transcriptions.",
         "noModelShort": "No model",
         "dialogSubtitle": "Configure how this action rewrites your transcription.",
-        "emptyTitle": "No actions yet"
+        "emptyTitle": "No actions yet",
+        "shortcut": "קיצור"
       },
       "defaultShortcut": {
         "title": "Default shortcut",
@@ -578,7 +610,25 @@
           "description": "הסקה מהירה לביצועים גבוהים עבור מודל זיהוי הדיבור Whisper של OpenAI",
           "details": "Handy משתמש ב-Whisper.cpp לתמלול מהיר ומקומי. תודה לעבודה המדהימה של Georgi Gerganov וכל התורמים."
         }
+      },
+      "exportImport": {
+        "title": "ייצוא / ייבוא הגדרות",
+        "description": "העבר את ההגדרות שלך למחשב אחר",
+        "export": "ייצוא",
+        "import": "ייבוא",
+        "exportSuccess": "ההגדרות יוצאו בהצלחה",
+        "importSuccess": "ההגדרות יובאו בהצלחה"
       }
+    },
+    "longAudioModel": {
+      "title": "מודל לשמע ארוך",
+      "description": "החלפה אוטומטית למודל אחר כשלוקח ההקלטה חורג מהסף.",
+      "disabled": "מושבת",
+      "modelLabel": "מודל להקלטות ארוכות",
+      "modelDescription": "בחר מודל להקלטות ארוכות מהסף.",
+      "thresholdLabel": "סף משך זמן (שניות)",
+      "thresholdDescription": "החלפה למודל השמע הארוך כש ההקלטה חורגת ממשך זמן זה.",
+      "seconds": "{{value}} שנ'"
     }
   },
   "footer": {
@@ -647,6 +697,7 @@
   },
   "overlay": {
     "transcribing": "מתמלל...",
-    "processing": "מעבד..."
+    "processing": "מעבד...",
+    "cancelConfirm": "Esc שוב לביטול"
   }
 }

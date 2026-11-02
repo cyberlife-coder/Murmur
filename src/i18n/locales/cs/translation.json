@@ -92,7 +92,8 @@
     },
     "errors": {
       "loadModels": "Nepodařilo se načíst dostupné modely",
-      "downloadModel": "Nepodařilo se stáhnout model: {{error}}"
+      "downloadModel": "Nepodařilo se stáhnout model: {{error}}",
+      "selectModel": "Vyberte prosím model"
     },
     "permissions": {
       "title": "Vyžadována oprávnění",
@@ -181,6 +182,25 @@
         "fetchModels": "Refresh models",
         "label": "Label (optional)",
         "labelPlaceholder": "Display name for this model"
+      },
+      "tabs": {
+        "transcription": "Přepis",
+        "processing": "Zpracování"
+      },
+      "processingModels": {
+        "title": "Modely zpracování",
+        "description": "Ukládejte LLM modely pro použití v akcích zpracování.",
+        "noModels": "Zatím nejsou uloženy žádné modely zpracování. Přidejte nějaký pro použití v akcích.",
+        "addModel": "Přidat model zpracování",
+        "provider": "Poskytovatel",
+        "apiKey": "API klíč",
+        "apiKeyPlaceholder": "Zadejte API klíč",
+        "model": "Model",
+        "modelPlaceholder": "Vyberte nebo zadejte model",
+        "fetchModels": "Načíst modely",
+        "save": "Uložit",
+        "cancel": "Zrušit",
+        "alreadySaved": "Tento model je už uložen."
       }
     },
     "general": {
@@ -204,13 +224,22 @@
           "transcribe_with_post_process": {
             "name": "Klávesa pro následné zpracování",
             "description": "Volitelné: Vyhrazená klávesová zkratka, která vždy použije AI následné zpracování na váš přepis."
+          },
+          "copy_latest_history": {
+            "name": "Kopírovat poslední přepis",
+            "description": "Zkopíruje poslední přepis do schránky."
+          },
+          "show_history": {
+            "name": "Zobrazit historii",
+            "description": "Otevře okno aplikace a přejde na kartu Historie."
           }
         },
         "errors": {
           "restore": "Nepodařilo se obnovit původní zkratku",
           "set": "Nepodařilo se nastavit zkratku: {{error}}",
           "reset": "Nepodařilo se vrátit zkratku na původní hodnotu"
-        }
+        },
+        "clickToSet": "Kliknutím nastavíte"
       },
       "language": {
         "title": "Jazyk",
@@ -255,7 +284,8 @@
         "output": "Výstup",
         "transcription": "Přepis",
         "history": "Historie",
-        "experimental": "Experimentální"
+        "experimental": "Experimentální",
+        "cloudModels": "Cloudové modely"
       },
       "experimentalToggle": {
         "label": "Experimentální funkce",
@@ -450,7 +480,8 @@
         "empty": "No actions yet. Create one to start post-processing your transcriptions.",
         "noModelShort": "No model",
         "dialogSubtitle": "Configure how this action rewrites your transcription.",
-        "emptyTitle": "No actions yet"
+        "emptyTitle": "No actions yet",
+        "shortcut": "Zkratka"
       },
       "defaultShortcut": {
         "title": "Default shortcut",
@@ -579,7 +610,25 @@
           "description": "Vysoce výkonné inferenční zpracování modelu automatického rozpoznávání řeči Whisper od OpenAI",
           "details": "Parler používá Whisper.cpp pro rychlé lokální zpracování řeči na text. Díky skvělé práci Georgiho Gerganova a přispěvatelů."
         }
+      },
+      "exportImport": {
+        "title": "Export / Import nastavení",
+        "description": "Přeneste konfiguraci na jiný počítač",
+        "export": "Exportovat",
+        "import": "Importovat",
+        "exportSuccess": "Nastavení úspěšně exportováno",
+        "importSuccess": "Nastavení úspěšně importováno"
       }
+    },
+    "longAudioModel": {
+      "title": "Model pro dlouhé nahrávky",
+      "description": "Automaticky přepne na jiný model, když nahrávka přesáhne práh.",
+      "disabled": "Vypnuto",
+      "modelLabel": "Model pro dlouhé nahrávky",
+      "modelDescription": "Vyberte model pro nahrávky delší než práh.",
+      "thresholdLabel": "Práh délky (sekundy)",
+      "thresholdDescription": "Přepnout na model pro dlouhé audio, když nahrávka překročí tuto délku.",
+      "seconds": "{{value}} s"
     }
   },
   "footer": {
@@ -648,6 +697,7 @@
   },
   "overlay": {
     "transcribing": "Přepisuji...",
-    "processing": "Zpracovávám..."
+    "processing": "Zpracovávám...",
+    "cancelConfirm": "Dalším Esc zrušíte"
   }
 }

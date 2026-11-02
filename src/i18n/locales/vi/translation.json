@@ -92,7 +92,8 @@
     },
     "errors": {
       "loadModels": "Không thể tải các mô hình có sẵn",
-      "downloadModel": "Không thể tải mô hình: {{error}}"
+      "downloadModel": "Không thể tải mô hình: {{error}}",
+      "selectModel": "Vui lòng chọn một mô hình"
     },
     "permissions": {
       "title": "Cần cấp quyền",
@@ -181,6 +182,25 @@
         "fetchModels": "Làm mới mô hình",
         "label": "Nhãn (tùy chọn)",
         "labelPlaceholder": "Tên hiển thị cho mô hình này"
+      },
+      "tabs": {
+        "transcription": "Phiên âm",
+        "processing": "Xử lý"
+      },
+      "processingModels": {
+        "title": "Mô hình xử lý",
+        "description": "Lưu các mô hình LLM để dùng trong các hành động xử lý.",
+        "noModels": "Chưa có mô hình xử lý nào được lưu. Thêm một cái để dùng trong hành động.",
+        "addModel": "Thêm mô hình xử lý",
+        "provider": "Nhà cung cấp",
+        "apiKey": "Khóa API",
+        "apiKeyPlaceholder": "Nhập khóa API",
+        "model": "Mô hình",
+        "modelPlaceholder": "Chọn hoặc nhập một mô hình",
+        "fetchModels": "Tải mô hình",
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "alreadySaved": "Mô hình này đã được lưu."
       }
     },
     "general": {
@@ -264,7 +284,8 @@
         "output": "Đầu ra",
         "transcription": "Chuyển đổi",
         "history": "Lịch sử",
-        "experimental": "Thử nghiệm"
+        "experimental": "Thử nghiệm",
+        "cloudModels": "Mô hình đám mây"
       },
       "experimentalToggle": {
         "label": "Tính năng thử nghiệm",
@@ -459,7 +480,8 @@
         "empty": "Chưa có hành động nào. Tạo một hành động để xử lý bản ghi của bạn.",
         "noModelShort": "Không có mô hình",
         "dialogSubtitle": "Cấu hình cách hành động này viết lại bản ghi của bạn.",
-        "emptyTitle": "Chưa có hành động nào"
+        "emptyTitle": "Chưa có hành động nào",
+        "shortcut": "Phím tắt"
       },
       "defaultShortcut": {
         "title": "Phím tắt mặc định",
@@ -588,7 +610,25 @@
           "description": "Suy luận hiệu suất cao của mô hình nhận dạng giọng nói tự động Whisper của OpenAI",
           "details": "Parler sử dụng Whisper.cpp để xử lý chuyển đổi giọng nói thành văn bản nhanh, cục bộ. Cảm ơn công việc tuyệt vời của Georgi Gerganov và các cộng tác viên."
         }
+      },
+      "exportImport": {
+        "title": "Xuất / Nhập cài đặt",
+        "description": "Chuyển cấu hình của bạn sang máy tính khác",
+        "export": "Xuất",
+        "import": "Nhập",
+        "exportSuccess": "Đã xuất cài đặt thành công",
+        "importSuccess": "Đã nhập cài đặt thành công"
       }
+    },
+    "longAudioModel": {
+      "title": "Mô hình cho âm thanh dài",
+      "description": "Tự động chuyển sang mô hình khác khi thời lượng ghi âm vượt quá ngưỡng.",
+      "disabled": "Đã tắt",
+      "modelLabel": "Mô hình cho bản ghi dài",
+      "modelDescription": "Chọn mô hình cho các bản ghi dài hơn ngưỡng.",
+      "thresholdLabel": "Ngưỡng thời lượng (giây)",
+      "thresholdDescription": "Chuyển sang mô hình âm thanh dài khi bản ghi vượt quá thời lượng này.",
+      "seconds": "{{value}} giây"
     }
   },
   "footer": {

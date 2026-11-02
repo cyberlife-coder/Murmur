@@ -92,7 +92,8 @@
     },
     "errors": {
       "loadModels": "사용 가능한 모델을 불러오는데 실패했습니다",
-      "downloadModel": "모델 다운로드 실패: {{error}}"
+      "downloadModel": "모델 다운로드 실패: {{error}}",
+      "selectModel": "모델을 선택하세요"
     },
     "permissions": {
       "title": "권한 필요",
@@ -173,13 +174,22 @@
           "transcribe_with_post_process": {
             "name": "후처리 단축키",
             "description": "선택 사항: 항상 AI 후처리를 적용하는 전용 단축키입니다."
+          },
+          "copy_latest_history": {
+            "name": "최근 변환 복사",
+            "description": "가장 최근 변환 내용을 클립보드에 복사합니다."
+          },
+          "show_history": {
+            "name": "기록 표시",
+            "description": "앱 창을 열고 기록 탭으로 이동합니다."
           }
         },
         "errors": {
           "restore": "원래 단축키 복원에 실패했습니다",
           "set": "단축키 설정 실패: {{error}}",
           "reset": "단축키를 원래 값으로 재설정하는데 실패했습니다"
-        }
+        },
+        "clickToSet": "클릭하여 설정"
       },
       "language": {
         "title": "언어",
@@ -246,6 +256,25 @@
         "fetchModels": "Refresh models",
         "label": "Label (optional)",
         "labelPlaceholder": "Display name for this model"
+      },
+      "tabs": {
+        "transcription": "변환",
+        "processing": "후처리"
+      },
+      "processingModels": {
+        "title": "처리 모델",
+        "description": "후처리 작업에 사용할 LLM 모델을 저장합니다.",
+        "noModels": "아직 저장된 처리 모델이 없습니다. 작업에서 사용하려면 추가하세요.",
+        "addModel": "처리 모델 추가",
+        "provider": "제공자",
+        "apiKey": "API 키",
+        "apiKeyPlaceholder": "API 키 입력",
+        "model": "모델",
+        "modelPlaceholder": "모델 선택 또는 입력",
+        "fetchModels": "모델 가져오기",
+        "save": "저장",
+        "cancel": "취소",
+        "alreadySaved": "이 모델은 이미 저장되어 있습니다."
       }
     },
     "advanced": {
@@ -255,7 +284,8 @@
         "output": "출력",
         "transcription": "전사",
         "history": "히스토리",
-        "experimental": "실험적"
+        "experimental": "실험적",
+        "cloudModels": "클라우드 모델"
       },
       "experimentalToggle": {
         "label": "실험적 기능",
@@ -450,7 +480,8 @@
         "empty": "No actions yet. Create one to start post-processing your transcriptions.",
         "noModelShort": "No model",
         "dialogSubtitle": "Configure how this action rewrites your transcription.",
-        "emptyTitle": "No actions yet"
+        "emptyTitle": "No actions yet",
+        "shortcut": "단축키"
       },
       "defaultShortcut": {
         "title": "Default shortcut",
@@ -579,7 +610,25 @@
           "description": "OpenAI의 Whisper 자동 음성 인식 모델의 고성능 추론",
           "details": "Parler는 빠르고 로컬 음성-텍스트 처리를 위해 Whisper.cpp를 사용합니다. Georgi Gerganov와 기여자들의 놀라운 작업에 감사드립니다."
         }
+      },
+      "exportImport": {
+        "title": "설정 내보내기 / 가져오기",
+        "description": "구성을 다른 컴퓨터로 옮기기",
+        "export": "내보내기",
+        "import": "가져오기",
+        "exportSuccess": "설정을 내보냈습니다",
+        "importSuccess": "설정을 가져왔습니다"
       }
+    },
+    "longAudioModel": {
+      "title": "긴 오디오 모델",
+      "description": "녹음 시간이 임계값을 초과하면 자동으로 다른 모델로 전환합니다.",
+      "disabled": "비활성화됨",
+      "modelLabel": "긴 녹음용 모델",
+      "modelDescription": "임계값보다 긴 녹음에 사용할 모델을 선택하세요.",
+      "thresholdLabel": "지속 시간 임계값(초)",
+      "thresholdDescription": "녹음이 이 시간을 초과하면 긴 오디오 모델로 전환합니다.",
+      "seconds": "{{value}}초"
     }
   },
   "footer": {
@@ -648,6 +697,7 @@
   },
   "overlay": {
     "transcribing": "텍스트로 변환 중...",
-    "processing": "처리 중..."
+    "processing": "처리 중...",
+    "cancelConfirm": "Esc를 다시 눌러 취소"
   }
 }

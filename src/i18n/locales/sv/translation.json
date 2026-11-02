@@ -92,7 +92,8 @@
     },
     "errors": {
       "loadModels": "Misslyckades med att ladda tillgängliga modeller",
-      "downloadModel": "Misslyckades med att ladda ner modell: {{error}}"
+      "downloadModel": "Misslyckades med att ladda ner modell: {{error}}",
+      "selectModel": "Välj en modell"
     },
     "permissions": {
       "title": "Behörigheter krävs",
@@ -112,7 +113,8 @@
       "errors": {
         "checkFailed": "Misslyckades med att kontrollera behörigheter. Försök igen.",
         "requestFailed": "Misslyckades med att begära behörighet. Försök igen."
-      }
+      },
+      "skip": "Hoppa över för tillfället"
     }
   },
   "modelSelector": {
@@ -172,13 +174,22 @@
           "transcribe_with_post_process": {
             "name": "Snabbkommando för efterbearbetning",
             "description": "Valfritt: En dedikerad snabbknapp som alltid tillämpar AI-efterbearbetning på din transkription."
+          },
+          "copy_latest_history": {
+            "name": "Kopiera senaste transkriptionen",
+            "description": "Kopierar den senaste transkriptionen till urklipp."
+          },
+          "show_history": {
+            "name": "Visa historik",
+            "description": "Öppnar appfönstret och går till historikfliken."
           }
         },
         "errors": {
           "restore": "Misslyckades med att återställa ursprungligt kortkommando",
           "set": "Misslyckades med att ställa in kortkommando: {{error}}",
           "reset": "Misslyckades med att återställa kortkommando till ursprungsvärdet"
-        }
+        },
+        "clickToSet": "Klicka för att ange"
       },
       "language": {
         "title": "Språk",
@@ -222,6 +233,25 @@
         "fetchModels": "Refresh models",
         "label": "Label (optional)",
         "labelPlaceholder": "Display name for this model"
+      },
+      "tabs": {
+        "transcription": "Transkription",
+        "processing": "Efterbearbetning"
+      },
+      "processingModels": {
+        "title": "Bearbetningsmodeller",
+        "description": "Spara LLM-modeller för användning i efterbehandlingsåtgärder.",
+        "noModels": "Inga bearbetningsmodeller sparade än. Lägg till en för att använda i åtgärder.",
+        "addModel": "Lägg till bearbetningsmodell",
+        "provider": "Leverantör",
+        "apiKey": "API-nyckel",
+        "apiKeyPlaceholder": "Ange API-nyckel",
+        "model": "Modell",
+        "modelPlaceholder": "Välj eller skriv en modell",
+        "fetchModels": "Hämta modeller",
+        "save": "Spara",
+        "cancel": "Avbryt",
+        "alreadySaved": "Den här modellen är redan sparad."
       }
     },
     "sound": {
@@ -254,7 +284,8 @@
         "output": "Utmatning",
         "transcription": "Transkription",
         "history": "Historik",
-        "experimental": "Experimentellt"
+        "experimental": "Experimentellt",
+        "cloudModels": "Molnmodeller"
       },
       "experimentalToggle": {
         "label": "Experimentella funktioner",
@@ -449,7 +480,8 @@
         "empty": "No actions yet. Create one to start post-processing your transcriptions.",
         "noModelShort": "No model",
         "dialogSubtitle": "Configure how this action rewrites your transcription.",
-        "emptyTitle": "No actions yet"
+        "emptyTitle": "No actions yet",
+        "shortcut": "Kortkommando"
       },
       "defaultShortcut": {
         "title": "Default shortcut",
@@ -578,7 +610,25 @@
           "description": "Högpresterande inferens av OpenAI:s Whisper-modell för automatisk taligenkänning",
           "details": "Handy använder Whisper.cpp för snabb, lokal tal-till-text-behandling. Tack till det fantastiska arbete som utförts av Georgi Gerganov med medarbetare."
         }
+      },
+      "exportImport": {
+        "title": "Exportera / Importera inställningar",
+        "description": "Överför din konfiguration till en annan dator",
+        "export": "Exportera",
+        "import": "Importera",
+        "exportSuccess": "Inställningarna har exporterats",
+        "importSuccess": "Inställningarna har importerats"
       }
+    },
+    "longAudioModel": {
+      "title": "Modell för långa inspelningar",
+      "description": "Byt automatiskt till en annan modell när inspelningen är längre än tröskeln.",
+      "disabled": "Inaktiverad",
+      "modelLabel": "Modell för långa inspelningar",
+      "modelDescription": "Välj modell för inspelningar längre än tröskeln.",
+      "thresholdLabel": "Tidströskel (sekunder)",
+      "thresholdDescription": "Byt till långinspelningsmodellen när inspelningen överstiger denna tid.",
+      "seconds": "{{value}} s"
     }
   },
   "footer": {
@@ -647,6 +697,7 @@
   },
   "overlay": {
     "transcribing": "Transkriberar...",
-    "processing": "Bearbetar..."
+    "processing": "Bearbetar...",
+    "cancelConfirm": "Tryck Esc igen för att avbryta"
   }
 }

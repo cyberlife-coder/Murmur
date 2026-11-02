@@ -92,7 +92,8 @@
     },
     "errors": {
       "loadModels": "Failed to load available models",
-      "downloadModel": "Failed to download model: {{error}}"
+      "downloadModel": "Failed to download model: {{error}}",
+      "selectModel": "Please select a model"
     },
     "permissions": {
       "title": "Permissions Required",
@@ -488,7 +489,8 @@
         "empty": "No actions yet. Create one to start post-processing your transcriptions.",
         "noModelShort": "No model",
         "dialogSubtitle": "Configure how this action rewrites your transcription.",
-        "emptyTitle": "No actions yet"
+        "emptyTitle": "No actions yet",
+        "shortcut": "Shortcut"
       },
       "description": "Create post-processing actions that rewrite your transcription with an AI model. Trigger them with a global shortcut or by pressing a number key while recording.",
       "defaultShortcut": {

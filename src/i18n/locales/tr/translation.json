@@ -92,7 +92,8 @@
     },
     "errors": {
       "loadModels": "Mevcut modeller yüklenemedi",
-      "downloadModel": "Model indirilemedi: {{error}}"
+      "downloadModel": "Model indirilemedi: {{error}}",
+      "selectModel": "Lütfen bir model seçin"
     },
     "permissions": {
       "title": "İzinler Gerekli",
@@ -181,6 +182,25 @@
         "fetchModels": "Refresh models",
         "label": "Label (optional)",
         "labelPlaceholder": "Display name for this model"
+      },
+      "tabs": {
+        "transcription": "Transkripsiyon",
+        "processing": "Son işlem"
+      },
+      "processingModels": {
+        "title": "İşleme modelleri",
+        "description": "Son işlem eylemlerinde kullanmak için LLM modelleri kaydedin.",
+        "noModels": "Henüz kaydedilmiş işleme modeli yok. Eylemlerde kullanmak için bir tane ekleyin.",
+        "addModel": "İşleme modeli ekle",
+        "provider": "Sağlayıcı",
+        "apiKey": "API anahtarı",
+        "apiKeyPlaceholder": "API anahtarını girin",
+        "model": "Model",
+        "modelPlaceholder": "Bir model seçin veya yazın",
+        "fetchModels": "Modelleri getir",
+        "save": "Kaydet",
+        "cancel": "İptal",
+        "alreadySaved": "Bu model zaten kaydedilmiş."
       }
     },
     "general": {
@@ -204,13 +224,22 @@
           "transcribe_with_post_process": {
             "name": "Son İşlem Kısayolu",
             "description": "İsteğe bağlı: Transkripsiyonunuza her zaman AI son işleme uygulayan özel bir kısayol tuşu."
+          },
+          "copy_latest_history": {
+            "name": "Son dökümü kopyala",
+            "description": "En son dökümü panoya kopyalar."
+          },
+          "show_history": {
+            "name": "Geçmişi göster",
+            "description": "Uygulama penceresini açar ve Geçmiş sekmesine gider."
           }
         },
         "errors": {
           "restore": "Orijinal kısayol geri yüklenemedi",
           "set": "Kısayol ayarlanamadı: {{error}}",
           "reset": "Kısayol orijinal değerine sıfırlanamadı"
-        }
+        },
+        "clickToSet": "Ayarlamak için tıklayın"
       },
       "language": {
         "title": "Dil",
@@ -255,7 +284,8 @@
         "output": "Çıktı",
         "transcription": "Transkripsiyon",
         "history": "Geçmiş",
-        "experimental": "Deneysel"
+        "experimental": "Deneysel",
+        "cloudModels": "Bulut modelleri"
       },
       "experimentalToggle": {
         "label": "Deneysel Özellikler",
@@ -450,7 +480,8 @@
         "empty": "No actions yet. Create one to start post-processing your transcriptions.",
         "noModelShort": "No model",
         "dialogSubtitle": "Configure how this action rewrites your transcription.",
-        "emptyTitle": "No actions yet"
+        "emptyTitle": "No actions yet",
+        "shortcut": "Kısayol"
       },
       "defaultShortcut": {
         "title": "Default shortcut",
@@ -579,7 +610,25 @@
           "description": "OpenAI'nin Whisper otomatik konuşma tanıma modelinin yüksek performanslı çıkarımı",
           "details": "Parler, hızlı ve yerel konuşmadan metne dönüştürme için Whisper.cpp kullanır. Georgi Gerganov ve katkıda bulunanların harika çalışmaları için teşekkür ederiz."
         }
+      },
+      "exportImport": {
+        "title": "Ayarları Dışa / İçe Aktar",
+        "description": "Yapılandırmanızı başka bir bilgisayara aktarın",
+        "export": "Dışa aktar",
+        "import": "İçe aktar",
+        "exportSuccess": "Ayarlar başarıyla dışa aktarıldı",
+        "importSuccess": "Ayarlar başarıyla içe aktarıldı"
       }
+    },
+    "longAudioModel": {
+      "title": "Uzun ses modeli",
+      "description": "Kayıt süresi eşiği aştığında otomatik olarak başka bir modele geç.",
+      "disabled": "Devre dışı",
+      "modelLabel": "Uzun kayıtlar için model",
+      "modelDescription": "Eşikten uzun kayıtlar için kullanılacak modeli seçin.",
+      "thresholdLabel": "Süre eşiği (saniye)",
+      "thresholdDescription": "Kayıt bu süreyi aştığında uzun ses modeline geç.",
+      "seconds": "{{value}} sn"
     }
   },
   "footer": {
@@ -648,6 +697,7 @@
   },
   "overlay": {
     "transcribing": "Transkribe ediliyor...",
-    "processing": "İşleniyor..."
+    "processing": "İşleniyor...",
+    "cancelConfirm": "İptal için tekrar Esc'ye basın"
   }
 }

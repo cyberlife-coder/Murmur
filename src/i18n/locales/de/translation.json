@@ -92,7 +92,8 @@
     },
     "errors": {
       "loadModels": "Verfügbare Modelle konnten nicht geladen werden",
-      "downloadModel": "Modell konnte nicht heruntergeladen werden: {{error}}"
+      "downloadModel": "Modell konnte nicht heruntergeladen werden: {{error}}",
+      "selectModel": "Bitte wähle ein Modell aus"
     },
     "permissions": {
       "title": "Berechtigungen erforderlich",
@@ -181,6 +182,25 @@
         "fetchModels": "Refresh models",
         "label": "Label (optional)",
         "labelPlaceholder": "Display name for this model"
+      },
+      "tabs": {
+        "transcription": "Transkription",
+        "processing": "Nachbearbeitung"
+      },
+      "processingModels": {
+        "title": "Verarbeitungsmodelle",
+        "description": "LLM-Modelle für Nachbearbeitungsaktionen speichern.",
+        "noModels": "Noch keine Verarbeitungsmodelle gespeichert. Füge eines hinzu, um es in Aktionen zu verwenden.",
+        "addModel": "Verarbeitungsmodell hinzufügen",
+        "provider": "Anbieter",
+        "apiKey": "API-Schlüssel",
+        "apiKeyPlaceholder": "API-Schlüssel eingeben",
+        "model": "Modell",
+        "modelPlaceholder": "Modell auswählen oder eingeben",
+        "fetchModels": "Modelle abrufen",
+        "save": "Speichern",
+        "cancel": "Abbrechen",
+        "alreadySaved": "Dieses Modell ist bereits gespeichert."
       }
     },
     "general": {
@@ -204,13 +224,22 @@
           "transcribe_with_post_process": {
             "name": "Nachbearbeitungs-Tastenkürzel",
             "description": "Optional: Ein dediziertes Tastenkürzel, das immer die KI-Nachbearbeitung auf Ihre Transkription anwendet."
+          },
+          "copy_latest_history": {
+            "name": "Letzte Transkription kopieren",
+            "description": "Kopiert die letzte Transkription in die Zwischenablage."
+          },
+          "show_history": {
+            "name": "Verlauf anzeigen",
+            "description": "Öffnet das App-Fenster und wechselt zum Verlauf."
           }
         },
         "errors": {
           "restore": "Ursprüngliches Tastenkürzel konnte nicht wiederhergestellt werden",
           "set": "Tastenkürzel konnte nicht gesetzt werden: {{error}}",
           "reset": "Tastenkürzel konnte nicht auf Originalwert zurückgesetzt werden"
-        }
+        },
+        "clickToSet": "Klicken zum Festlegen"
       },
       "language": {
         "title": "Sprache",
@@ -255,7 +284,8 @@
         "output": "Ausgabe",
         "transcription": "Transkription",
         "history": "Verlauf",
-        "experimental": "Experimentell"
+        "experimental": "Experimentell",
+        "cloudModels": "Cloud-Modelle"
       },
       "experimentalToggle": {
         "label": "Experimentelle Funktionen",
@@ -450,7 +480,8 @@
         "empty": "No actions yet. Create one to start post-processing your transcriptions.",
         "noModelShort": "No model",
         "dialogSubtitle": "Configure how this action rewrites your transcription.",
-        "emptyTitle": "No actions yet"
+        "emptyTitle": "No actions yet",
+        "shortcut": "Tastenkombination"
       },
       "defaultShortcut": {
         "title": "Default shortcut",
@@ -579,7 +610,25 @@
           "description": "Hochleistungs-Inferenz des Whisper-Spracherkennungsmodells von OpenAI",
           "details": "Parler verwendet Whisper.cpp für schnelle, lokale Sprach-zu-Text-Verarbeitung. Dank an Georgi Gerganov und die Mitwirkenden für ihre großartige Arbeit."
         }
+      },
+      "exportImport": {
+        "title": "Einstellungen exportieren / importieren",
+        "description": "Übertrage deine Konfiguration auf einen anderen Computer",
+        "export": "Exportieren",
+        "import": "Importieren",
+        "exportSuccess": "Einstellungen erfolgreich exportiert",
+        "importSuccess": "Einstellungen erfolgreich importiert"
       }
+    },
+    "longAudioModel": {
+      "title": "Modell für lange Aufnahmen",
+      "description": "Wechselt automatisch zu einem anderen Modell, wenn die Aufnahme den Schwellenwert überschreitet.",
+      "disabled": "Deaktiviert",
+      "modelLabel": "Modell für lange Aufnahmen",
+      "modelDescription": "Wähle das Modell für Aufnahmen, die länger als der Schwellenwert sind.",
+      "thresholdLabel": "Dauerschwellenwert (Sekunden)",
+      "thresholdDescription": "Zum Langaufnahme-Modell wechseln, wenn die Aufnahme diese Dauer überschreitet.",
+      "seconds": "{{value}} s"
     }
   },
   "footer": {
@@ -648,6 +697,7 @@
   },
   "overlay": {
     "transcribing": "Transkribiere...",
-    "processing": "Verarbeite..."
+    "processing": "Verarbeite...",
+    "cancelConfirm": "Erneut Esc zum Abbrechen"
   }
 }

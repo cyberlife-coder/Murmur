@@ -92,7 +92,8 @@
     },
     "errors": {
       "loadModels": "Nie udało się wczytać dostępnych modeli",
-      "downloadModel": "Nie udało się pobrać modelu: {{error}}"
+      "downloadModel": "Nie udało się pobrać modelu: {{error}}",
+      "selectModel": "Wybierz model"
     },
     "permissions": {
       "title": "Wymagane uprawnienia",
@@ -181,6 +182,25 @@
         "fetchModels": "Refresh models",
         "label": "Label (optional)",
         "labelPlaceholder": "Display name for this model"
+      },
+      "tabs": {
+        "transcription": "Transkrypcja",
+        "processing": "Przetwarzanie"
+      },
+      "processingModels": {
+        "title": "Modele przetwarzania",
+        "description": "Zapisuj modele LLM do użycia w akcjach przetwarzania.",
+        "noModels": "Nie zapisano jeszcze modeli przetwarzania. Dodaj jeden, aby użyć w akcjach.",
+        "addModel": "Dodaj model przetwarzania",
+        "provider": "Dostawca",
+        "apiKey": "Klucz API",
+        "apiKeyPlaceholder": "Wprowadź klucz API",
+        "model": "Model",
+        "modelPlaceholder": "Wybierz lub wpisz model",
+        "fetchModels": "Pobierz modele",
+        "save": "Zapisz",
+        "cancel": "Anuluj",
+        "alreadySaved": "Ten model jest już zapisany."
       }
     },
     "general": {
@@ -204,13 +224,22 @@
           "transcribe_with_post_process": {
             "name": "Skrót postprocessingu",
             "description": "Opcjonalnie: Dedykowany skrót klawiszowy, który zawsze stosuje postprocessing AI do transkrypcji."
+          },
+          "copy_latest_history": {
+            "name": "Kopiuj ostatnią transkrypcję",
+            "description": "Kopiuje ostatnią transkrypcję do schowka."
+          },
+          "show_history": {
+            "name": "Pokaż historię",
+            "description": "Otwiera okno aplikacji i przechodzi do karty Historia."
           }
         },
         "errors": {
           "restore": "Nie udało się przywrócić oryginalnego skrótu",
           "set": "Nie udało się ustawić skrótu: {{error}}",
           "reset": "Nie udało się zresetować skrótu do wartości domyślnej"
-        }
+        },
+        "clickToSet": "Kliknij, aby ustawić"
       },
       "language": {
         "title": "Język",
@@ -255,7 +284,8 @@
         "output": "Wyjście",
         "transcription": "Transkrypcja",
         "history": "Historia",
-        "experimental": "Eksperymentalne"
+        "experimental": "Eksperymentalne",
+        "cloudModels": "Modele chmurowe"
       },
       "experimentalToggle": {
         "label": "Funkcje Eksperymentalne",
@@ -450,7 +480,8 @@
         "empty": "No actions yet. Create one to start post-processing your transcriptions.",
         "noModelShort": "No model",
         "dialogSubtitle": "Configure how this action rewrites your transcription.",
-        "emptyTitle": "No actions yet"
+        "emptyTitle": "No actions yet",
+        "shortcut": "Skrót"
       },
       "defaultShortcut": {
         "title": "Default shortcut",
@@ -579,7 +610,25 @@
           "description": "Wydajne wykonywanie modelu rozpoznawania mowy Whisper od OpenAI",
           "details": "Parler używa Whisper.cpp do szybkiego, lokalnego przetwarzania mowy na tekst. Dzięki niesamowitej pracy Georgi Gerganova i współtwórców."
         }
+      },
+      "exportImport": {
+        "title": "Eksport / Import ustawień",
+        "description": "Przenieś konfigurację na inny komputer",
+        "export": "Eksportuj",
+        "import": "Importuj",
+        "exportSuccess": "Ustawienia wyeksportowane pomyślnie",
+        "importSuccess": "Ustawienia zaimportowane pomyślnie"
       }
+    },
+    "longAudioModel": {
+      "title": "Model dla długich nagrań",
+      "description": "Automatycznie przełącza na inny model, gdy nagranie przekracza próg czasowy.",
+      "disabled": "Wyłączone",
+      "modelLabel": "Model dla długich nagrań",
+      "modelDescription": "Wybierz model dla nagrań dłuższych niż próg.",
+      "thresholdLabel": "Próg czasu (sekundy)",
+      "thresholdDescription": "Przełącz na model długiego audio, gdy nagranie przekracza ten czas.",
+      "seconds": "{{value}} s"
     }
   },
   "footer": {
@@ -648,6 +697,7 @@
   },
   "overlay": {
     "transcribing": "Transkrypcja...",
-    "processing": "Przetwarzanie..."
+    "processing": "Przetwarzanie...",
+    "cancelConfirm": "Naciśnij Esc ponownie, aby anulować"
   }
 }

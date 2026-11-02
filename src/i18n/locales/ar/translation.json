@@ -92,7 +92,8 @@
     },
     "errors": {
       "loadModels": "فشل تحميل النماذج المتاحة",
-      "downloadModel": "فشل تنزيل النموذج: {{error}}"
+      "downloadModel": "فشل تنزيل النموذج: {{error}}",
+      "selectModel": "الرجاء اختيار نموذج"
     },
     "permissions": {
       "title": "الأذونات المطلوبة",
@@ -169,13 +170,22 @@
           "transcribe_with_post_process": {
             "name": "مفتاح المعالجة اللاحقة",
             "description": "اختياري: مفتاح اختصار مخصص يطبق دائماً المعالجة اللاحقة بالذكاء الاصطناعي على التفريغ الصوتي."
+          },
+          "copy_latest_history": {
+            "name": "نسخ أحدث نسخة منسوخة",
+            "description": "ينسخ أحدث نص منسوخ إلى الحافظة."
+          },
+          "show_history": {
+            "name": "إظهار السجل",
+            "description": "يفتح نافذة التطبيق وينتقل إلى تبويب السجل."
           }
         },
         "errors": {
           "restore": "فشل استعادة الاختصار الأصلي",
           "set": "فشل تعيين الاختصار: {{error}}",
           "reset": "فشل إعادة تعيين الاختصار إلى قيمته الأصلية"
-        }
+        },
+        "clickToSet": "انقر للتعيين"
       },
       "language": {
         "title": "اللغة",
@@ -220,7 +230,8 @@
         "output": "الإخراج",
         "transcription": "التفريغ الصوتي",
         "history": "السجل",
-        "experimental": "تجريبي"
+        "experimental": "تجريبي",
+        "cloudModels": "نماذج سحابية"
       },
       "experimentalToggle": {
         "label": "الميزات التجريبية",
@@ -415,7 +426,8 @@
         "empty": "No actions yet. Create one to start post-processing your transcriptions.",
         "noModelShort": "No model",
         "dialogSubtitle": "Configure how this action rewrites your transcription.",
-        "emptyTitle": "No actions yet"
+        "emptyTitle": "No actions yet",
+        "shortcut": "اختصار"
       },
       "defaultShortcut": {
         "title": "Default shortcut",
@@ -544,6 +556,14 @@
           "description": "استنتاج عالي الأداء لنموذج التعرف التلقائي على الكلام Whisper من OpenAI",
           "details": ".يستخدم Parler برنامج Whisper.cpp لمعالجة سريعة ومحلية لتحويل الكلام إلى نص. شكراً للعمل الرائع الذي قام به Georgi Gerganov والمساهمون"
         }
+      },
+      "exportImport": {
+        "title": "تصدير / استيراد الإعدادات",
+        "description": "انقل إعداداتك إلى جهاز كمبيوتر آخر",
+        "export": "تصدير",
+        "import": "استيراد",
+        "exportSuccess": "تم تصدير الإعدادات بنجاح",
+        "importSuccess": "تم استيراد الإعدادات بنجاح"
       }
     },
     "modelSettings": {
@@ -579,7 +599,36 @@
         "fetchModels": "Refresh models",
         "label": "Label (optional)",
         "labelPlaceholder": "Display name for this model"
+      },
+      "tabs": {
+        "transcription": "النسخ",
+        "processing": "المعالجة"
+      },
+      "processingModels": {
+        "title": "نماذج المعالجة",
+        "description": "احفظ نماذج LLM لاستخدامها في إجراءات المعالجة.",
+        "noModels": "لا توجد نماذج معالجة محفوظة بعد. أضف واحدًا لاستخدامه في إجراءاتك.",
+        "addModel": "إضافة نموذج معالجة",
+        "provider": "المزوّد",
+        "apiKey": "مفتاح API",
+        "apiKeyPlaceholder": "أدخل مفتاح API",
+        "model": "النموذج",
+        "modelPlaceholder": "اختر أو اكتب نموذجًا",
+        "fetchModels": "جلب النماذج",
+        "save": "حفظ",
+        "cancel": "إلغاء",
+        "alreadySaved": "هذا النموذج محفوظ بالفعل."
       }
+    },
+    "longAudioModel": {
+      "title": "نموذج الصوت الطويل",
+      "description": "التبديل تلقائيًا إلى نموذج آخر عندما تتجاوز مدة التسجيل الحد.",
+      "disabled": "معطَّل",
+      "modelLabel": "النموذج للتسجيلات الطويلة",
+      "modelDescription": "اختر نموذج للتسجيلات الأطول من الحد",
+      "thresholdLabel": "حد مدة التسجيل (بالثواني)",
+      "thresholdDescription": "التبديل إلى نموذج الصوت الطويل عندما تتجاوز مدة التسجيل هذا الحد.",
+      "seconds": "{{value}} ث"
     }
   },
   "footer": {
@@ -648,6 +697,7 @@
   },
   "overlay": {
     "transcribing": "...جاري التفريغ",
-    "processing": "...جاري المعالجة"
+    "processing": "...جاري المعالجة",
+    "cancelConfirm": "اضغط Esc مرة أخرى للإلغاء"
   }
 }

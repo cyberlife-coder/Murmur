@@ -92,7 +92,8 @@
     },
     "errors": {
       "loadModels": "Не вдалося завантажити доступні моделі",
-      "downloadModel": "Не вдалося завантажити модель: {{error}}"
+      "downloadModel": "Не вдалося завантажити модель: {{error}}",
+      "selectModel": "Будь ласка, виберіть модель"
     },
     "permissions": {
       "title": "Потрібні дозволи",
@@ -173,13 +174,22 @@
           "transcribe_with_post_process": {
             "name": "Гаряча клавіша постобробки",
             "description": "Необов'язково: Спеціальна гаряча клавіша, яка завжди застосовує AI-постобробку до вашої транскрипції."
+          },
+          "copy_latest_history": {
+            "name": "Копіювати останню транскрипцію",
+            "description": "Копіює останню транскрипцію в буфер обміну."
+          },
+          "show_history": {
+            "name": "Показати історію",
+            "description": "Відкриває вікно застосунку та переходить на вкладку історії."
           }
         },
         "errors": {
           "restore": "Не вдалося відновити початкове скорочення",
           "set": "Не вдалося встановити скорочення: {{error}}",
           "reset": "Не вдалося скинути скорочення до початкового значення"
-        }
+        },
+        "clickToSet": "Натисніть, щоб призначити"
       },
       "language": {
         "title": "Мова",
@@ -223,6 +233,25 @@
         "fetchModels": "Refresh models",
         "label": "Label (optional)",
         "labelPlaceholder": "Display name for this model"
+      },
+      "tabs": {
+        "transcription": "Транскрипція",
+        "processing": "Постобробка"
+      },
+      "processingModels": {
+        "title": "Моделі обробки",
+        "description": "Зберігайте LLM-моделі для дій постобробки.",
+        "noModels": "Збережених моделей обробки ще немає. Додайте, щоб використовувати в діях.",
+        "addModel": "Додати модель обробки",
+        "provider": "Провайдер",
+        "apiKey": "API-ключ",
+        "apiKeyPlaceholder": "Введіть API-ключ",
+        "model": "Модель",
+        "modelPlaceholder": "Виберіть або введіть модель",
+        "fetchModels": "Отримати моделі",
+        "save": "Зберегти",
+        "cancel": "Скасувати",
+        "alreadySaved": "Цю модель уже збережено."
       }
     },
     "sound": {
@@ -255,7 +284,8 @@
         "output": "Вивід",
         "transcription": "Транскрипція",
         "history": "Історія",
-        "experimental": "Експериментальне"
+        "experimental": "Експериментальне",
+        "cloudModels": "Хмарні моделі"
       },
       "experimentalToggle": {
         "label": "Експериментальні функції",
@@ -450,7 +480,8 @@
         "empty": "No actions yet. Create one to start post-processing your transcriptions.",
         "noModelShort": "No model",
         "dialogSubtitle": "Configure how this action rewrites your transcription.",
-        "emptyTitle": "No actions yet"
+        "emptyTitle": "No actions yet",
+        "shortcut": "Гаряча клавіша"
       },
       "defaultShortcut": {
         "title": "Default shortcut",
@@ -579,7 +610,25 @@
           "description": "Високопродуктивний інференс моделі автоматичного розпізнавання мовлення Whisper від OpenAI",
           "details": "Parler використовує Whisper.cpp для швидкої локальної обробки мовлення в текст. Дякуємо за чудову роботу Георгію Герганову та контриб'юторам."
         }
+      },
+      "exportImport": {
+        "title": "Експорт / Імпорт налаштувань",
+        "description": "Перенесіть налаштування на інший комп'ютер",
+        "export": "Експорт",
+        "import": "Імпорт",
+        "exportSuccess": "Налаштування успішно експортовано",
+        "importSuccess": "Налаштування успішно імпортовано"
       }
+    },
+    "longAudioModel": {
+      "title": "Модель для довгих записів",
+      "description": "Автоматично перемикатися на іншу модель, якщо запис довший за поріг.",
+      "disabled": "Вимкнено",
+      "modelLabel": "Модель для довгих записів",
+      "modelDescription": "Виберіть модель для записів довших за поріг.",
+      "thresholdLabel": "Поріг тривалості (секунди)",
+      "thresholdDescription": "Перемикатися на модель для довгого аудіо, якщо запис перевищує цю тривалість.",
+      "seconds": "{{value}} с"
     }
   },
   "footer": {
@@ -648,6 +697,7 @@
   },
   "overlay": {
     "transcribing": "Обробка...",
-    "processing": "Постобробка..."
+    "processing": "Постобробка...",
+    "cancelConfirm": "Натисніть Esc ще раз, щоб скасувати"
   }
 }

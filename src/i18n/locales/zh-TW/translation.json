@@ -92,7 +92,8 @@
     },
     "errors": {
       "loadModels": "無法載入可用模型",
-      "downloadModel": "模型下載失敗: {{error}}"
+      "downloadModel": "模型下載失敗: {{error}}",
+      "selectModel": "請選擇一個模型"
     },
     "permissions": {
       "title": "需要權限",
@@ -173,13 +174,22 @@
           "transcribe_with_post_process": {
             "name": "後處理快捷鍵",
             "description": "可選：專用快捷鍵，使用時一律對轉錄結果套用 AI 後處理"
+          },
+          "copy_latest_history": {
+            "name": "複製最近轉錄",
+            "description": "將最新的轉錄內容複製到剪貼簿。"
+          },
+          "show_history": {
+            "name": "顯示歷史記錄",
+            "description": "開啟應用視窗並跳到歷史記錄標籤頁。"
           }
         },
         "errors": {
           "restore": "無法還原原始快捷鍵",
           "set": "無法設定快捷鍵: {{error}}",
           "reset": "無法將快捷鍵重設為原始值"
-        }
+        },
+        "clickToSet": "點擊設定"
       },
       "language": {
         "title": "語言",
@@ -223,6 +233,25 @@
         "fetchModels": "Refresh models",
         "label": "Label (optional)",
         "labelPlaceholder": "Display name for this model"
+      },
+      "tabs": {
+        "transcription": "轉錄",
+        "processing": "後處理"
+      },
+      "processingModels": {
+        "title": "處理模型",
+        "description": "儲存用於後處理動作的 LLM 模型。",
+        "noModels": "尚未儲存任何處理模型。新增一個以在動作中使用。",
+        "addModel": "新增處理模型",
+        "provider": "供應商",
+        "apiKey": "API 金鑰",
+        "apiKeyPlaceholder": "輸入 API 金鑰",
+        "model": "模型",
+        "modelPlaceholder": "選擇或輸入模型",
+        "fetchModels": "取得模型",
+        "save": "儲存",
+        "cancel": "取消",
+        "alreadySaved": "此模型已儲存。"
       }
     },
     "sound": {
@@ -255,7 +284,8 @@
         "output": "輸出",
         "transcription": "轉錄",
         "history": "歷史",
-        "experimental": "實驗性"
+        "experimental": "實驗性",
+        "cloudModels": "雲端模型"
       },
       "experimentalToggle": {
         "label": "實驗性功能",
@@ -450,7 +480,8 @@
         "empty": "No actions yet. Create one to start post-processing your transcriptions.",
         "noModelShort": "No model",
         "dialogSubtitle": "Configure how this action rewrites your transcription.",
-        "emptyTitle": "No actions yet"
+        "emptyTitle": "No actions yet",
+        "shortcut": "快捷鍵"
       },
       "defaultShortcut": {
         "title": "Default shortcut",
@@ -579,7 +610,25 @@
           "description": "針對 OpenAI Whisper 自動語音識別模型的高效能推理引擎",
           "details": "Parler 使用 Whisper.cpp 進行快速的本機語音轉文字處理。感謝 Georgi Gerganov 和貢獻者們的傑出工作"
         }
+      },
+      "exportImport": {
+        "title": "匯出 / 匯入設定",
+        "description": "將您的設定轉移到另一台電腦",
+        "export": "匯出",
+        "import": "匯入",
+        "exportSuccess": "設定匯出成功",
+        "importSuccess": "設定匯入成功"
       }
+    },
+    "longAudioModel": {
+      "title": "長音訊模型",
+      "description": "當錄音時間超過門檻時自動切換到其他模型。",
+      "disabled": "已停用",
+      "modelLabel": "長錄音使用的模型",
+      "modelDescription": "選擇用於超過門檻的長錄音的模型。",
+      "thresholdLabel": "時長門檻（秒）",
+      "thresholdDescription": "當錄音超過此時間時切換到長音訊模型。",
+      "seconds": "{{value}} 秒"
     }
   },
   "footer": {
@@ -648,6 +697,7 @@
   },
   "overlay": {
     "transcribing": "正在轉錄...",
-    "processing": "處理中..."
+    "processing": "處理中...",
+    "cancelConfirm": "再按一次 Esc 取消"
   }
 }

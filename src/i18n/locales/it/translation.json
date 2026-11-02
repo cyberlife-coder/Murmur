@@ -92,7 +92,8 @@
     },
     "errors": {
       "loadModels": "Errore di caricamento dei modelli disponibili",
-      "downloadModel": "Errore nel download del modello: {{error}}"
+      "downloadModel": "Errore nel download del modello: {{error}}",
+      "selectModel": "Seleziona un modello"
     },
     "permissions": {
       "title": "Permessi Richiesti",
@@ -181,6 +182,25 @@
         "fetchModels": "Refresh models",
         "label": "Label (optional)",
         "labelPlaceholder": "Display name for this model"
+      },
+      "tabs": {
+        "transcription": "Trascrizione",
+        "processing": "Post-elaborazione"
+      },
+      "processingModels": {
+        "title": "Modelli di elaborazione",
+        "description": "Salva i modelli LLM da usare nelle azioni di post-elaborazione.",
+        "noModels": "Nessun modello di elaborazione salvato. Aggiungine uno per usarlo nelle azioni.",
+        "addModel": "Aggiungi modello di elaborazione",
+        "provider": "Provider",
+        "apiKey": "Chiave API",
+        "apiKeyPlaceholder": "Inserisci la chiave API",
+        "model": "Modello",
+        "modelPlaceholder": "Seleziona o digita un modello",
+        "fetchModels": "Recupera modelli",
+        "save": "Salva",
+        "cancel": "Annulla",
+        "alreadySaved": "Questo modello è già salvato."
       }
     },
     "general": {
@@ -204,13 +224,22 @@
           "transcribe_with_post_process": {
             "name": "Tasto di post-elaborazione",
             "description": "Facoltativo: Un tasto di scelta rapida dedicato che applica sempre la post-elaborazione IA alla trascrizione."
+          },
+          "copy_latest_history": {
+            "name": "Copia ultima trascrizione",
+            "description": "Copia l'ultima trascrizione negli appunti."
+          },
+          "show_history": {
+            "name": "Mostra cronologia",
+            "description": "Apre la finestra dell'app e va nella scheda Cronologia."
           }
         },
         "errors": {
           "restore": "Errore nel ripristino della scorciatoia originale",
           "set": "Errore nella configurazione della scorciatoia: {{error}}",
           "reset": "Errore nella reinizializzazione della scorciatoia al valore originale"
-        }
+        },
+        "clickToSet": "Clicca per impostare"
       },
       "language": {
         "title": "Lingua",
@@ -255,7 +284,8 @@
         "output": "Output",
         "transcription": "Trascrizione",
         "history": "Cronologia",
-        "experimental": "Sperimentale"
+        "experimental": "Sperimentale",
+        "cloudModels": "Modelli cloud"
       },
       "experimentalToggle": {
         "label": "Funzionalità Sperimentali",
@@ -450,7 +480,8 @@
         "empty": "No actions yet. Create one to start post-processing your transcriptions.",
         "noModelShort": "No model",
         "dialogSubtitle": "Configure how this action rewrites your transcription.",
-        "emptyTitle": "No actions yet"
+        "emptyTitle": "No actions yet",
+        "shortcut": "Scorciatoia"
       },
       "defaultShortcut": {
         "title": "Default shortcut",
@@ -579,7 +610,25 @@
           "description": "Inferenza ad alte prestazioni del modello di riconoscimento vocale automatico Whisper di OpenAI",
           "details": "Parler usa Whisper.cpp per il riconoscimento vocale veloce in locale. Grazie a Georgi Gerganov e collaboratori per il fantastico lavoro."
         }
+      },
+      "exportImport": {
+        "title": "Esporta / Importa impostazioni",
+        "description": "Trasferisci la tua configurazione su un altro computer",
+        "export": "Esporta",
+        "import": "Importa",
+        "exportSuccess": "Impostazioni esportate con successo",
+        "importSuccess": "Impostazioni importate con successo"
       }
+    },
+    "longAudioModel": {
+      "title": "Modello per audio lunghi",
+      "description": "Passa automaticamente a un altro modello quando la registrazione supera la soglia.",
+      "disabled": "Disattivato",
+      "modelLabel": "Modello per registrazioni lunghe",
+      "modelDescription": "Seleziona il modello da usare per registrazioni più lunghe della soglia.",
+      "thresholdLabel": "Soglia di durata (secondi)",
+      "thresholdDescription": "Passa al modello per audio lunghi quando la registrazione supera questa durata.",
+      "seconds": "{{value}} s"
     }
   },
   "footer": {
@@ -648,6 +697,7 @@
   },
   "overlay": {
     "transcribing": "Trascrizione...",
-    "processing": "Elaborazione..."
+    "processing": "Elaborazione...",
+    "cancelConfirm": "Premi di nuovo Esc per annullare"
   }
 }

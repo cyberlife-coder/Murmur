@@ -92,7 +92,8 @@
     },
     "errors": {
       "loadModels": "Error al cargar los modelos disponibles",
-      "downloadModel": "Error al descargar el modelo: {{error}}"
+      "downloadModel": "Error al descargar el modelo: {{error}}",
+      "selectModel": "Selecciona un modelo"
     },
     "permissions": {
       "title": "Permisos Requeridos",
@@ -181,6 +182,25 @@
         "fetchModels": "Actualizar modelos",
         "label": "Etiqueta (opcional)",
         "labelPlaceholder": "Nombre para mostrar de este modelo"
+      },
+      "tabs": {
+        "transcription": "Transcripción",
+        "processing": "Procesamiento"
+      },
+      "processingModels": {
+        "title": "Modelos de procesamiento",
+        "description": "Guarda modelos LLM para usar en acciones de procesamiento.",
+        "noModels": "Aún no hay modelos de procesamiento guardados. Añade uno para usarlo en tus acciones.",
+        "addModel": "Añadir modelo de procesamiento",
+        "provider": "Proveedor",
+        "apiKey": "Clave API",
+        "apiKeyPlaceholder": "Introduce la clave API",
+        "model": "Modelo",
+        "modelPlaceholder": "Selecciona o escribe un modelo",
+        "fetchModels": "Obtener modelos",
+        "save": "Guardar",
+        "cancel": "Cancelar",
+        "alreadySaved": "Este modelo ya está guardado."
       }
     },
     "general": {
@@ -264,7 +284,8 @@
         "output": "Salida",
         "transcription": "Transcripción",
         "history": "Historial",
-        "experimental": "Experimental"
+        "experimental": "Experimental",
+        "cloudModels": "Modelos en la nube"
       },
       "experimentalToggle": {
         "label": "Funciones Experimentales",
@@ -459,7 +480,8 @@
         "empty": "Aún no hay acciones. Crea una para posprocesar tus transcripciones.",
         "noModelShort": "Sin modelo",
         "dialogSubtitle": "Configura cómo esta acción reescribe tu transcripción.",
-        "emptyTitle": "Aún no hay acciones"
+        "emptyTitle": "Aún no hay acciones",
+        "shortcut": "Atajo"
       },
       "defaultShortcut": {
         "title": "Atajo predeterminado",
@@ -588,7 +610,25 @@
           "description": "Inferencia de alto rendimiento del modelo de reconocimiento automático de voz Whisper de OpenAI",
           "details": "Parler usa Whisper.cpp para procesamiento de voz a texto rápido y local. Gracias al increíble trabajo de Georgi Gerganov y colaboradores."
         }
+      },
+      "exportImport": {
+        "title": "Exportar / Importar ajustes",
+        "description": "Transfiere tu configuración a otro ordenador",
+        "export": "Exportar",
+        "import": "Importar",
+        "exportSuccess": "Ajustes exportados correctamente",
+        "importSuccess": "Ajustes importados correctamente"
       }
+    },
+    "longAudioModel": {
+      "title": "Modelo para audios largos",
+      "description": "Cambia automáticamente a otro modelo cuando la grabación supera el umbral.",
+      "disabled": "Desactivado",
+      "modelLabel": "Modelo para grabaciones largas",
+      "modelDescription": "Selecciona el modelo para grabaciones más largas que el umbral.",
+      "thresholdLabel": "Umbral de duración (segundos)",
+      "thresholdDescription": "Cambiar al modelo de audio largo cuando la grabación supere esta duración.",
+      "seconds": "{{value}} s"
     }
   },
   "footer": {
