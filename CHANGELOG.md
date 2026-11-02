@@ -11,6 +11,17 @@ build on the corresponding upstream version `X.Y.Z`.
 
 ## [Unreleased]
 
+## [0.11.3-fork.1] - 2026-11-02
+
+### Changed
+
+- **In-app update checker now works on this fork**: the updater public key now belongs to this fork (the previous one was upstream's, whose private key we don't have, so no update could ever be signed). `createUpdaterArtifacts` is enabled and releases publish `latest.json` + `.sig` files, so "Check for Updates" verifies and installs updates. Signing key is stored as GitHub secrets (`TAURI_SIGNING_PRIVATE_KEY`, `TAURI_SIGNING_PRIVATE_KEY_PASSWORD`).
+- Cargo package description renamed to Murmur.
+
+### Fixed
+
+- Update check no longer fails with a 404 on `latest.json` (artifacts are now published with each release).
+
 ## [0.11.2-fork.1] - 2026-11-02
 
 ### Fixed
